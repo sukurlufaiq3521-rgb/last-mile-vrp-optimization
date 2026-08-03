@@ -1,0 +1,2094 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_5fc97db665a56eed422a759510ea42fa {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_5fc97db665a56eed422a759510ea42fa" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_5fc97db665a56eed422a759510ea42fa = L.map(
+                "map_5fc97db665a56eed422a759510ea42fa",
+                {
+                    center: [40.4, 49.85],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_d6e06700ca369ba2d230e77600f6eeba = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_d6e06700ca369ba2d230e77600f6eeba.addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+            var marker_bd418ecda2f3659e6444b275e3ae55fd = L.marker(
+                [40.4, 49.85],
+                {
+}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+            var icon_e6c0ac0ca54e51c97885c5dba8cb7b68 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "black",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0941eda0b793e6ef5be9ede94f4e8420 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8983402d1ed2eb6384ed0d886146b8e8 = $(`<div id="html_8983402d1ed2eb6384ed0d886146b8e8" style="width: 100.0%; height: 100.0%;">ANBAR (Depot)</div>`)[0];
+                popup_0941eda0b793e6ef5be9ede94f4e8420.setContent(html_8983402d1ed2eb6384ed0d886146b8e8);
+            
+        
+
+        marker_bd418ecda2f3659e6444b275e3ae55fd.bindPopup(popup_0941eda0b793e6ef5be9ede94f4e8420)
+        ;
+
+        
+    
+    
+                marker_bd418ecda2f3659e6444b275e3ae55fd.setIcon(icon_e6c0ac0ca54e51c97885c5dba8cb7b68);
+            
+    
+            var poly_line_9dd92ecbd25120b562a099539a49970b = L.polyline(
+                [[40.4, 49.85], [40.4, 49.85]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_ffc0cc011167d49ca0e6a75c223febea = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_512c61818bef9c6d311a035ef48ade91 = $(`<div id="html_512c61818bef9c6d311a035ef48ade91" style="width: 100.0%; height: 100.0%;">Maşın 0 marşrutu</div>`)[0];
+                popup_ffc0cc011167d49ca0e6a75c223febea.setContent(html_512c61818bef9c6d311a035ef48ade91);
+            
+        
+
+        poly_line_9dd92ecbd25120b562a099539a49970b.bindPopup(popup_ffc0cc011167d49ca0e6a75c223febea)
+        ;
+
+        
+    
+    
+            var circle_marker_3094ce65479c69be610f330d1dcf1089 = L.circleMarker(
+                [40.38046137691734, 49.88036720768991],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_9081a54c9fde7ae8ff2cf23dcb57281c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6d1a8b7b2f47338cfbd65f835e92fe12 = $(`<div id="html_6d1a8b7b2f47338cfbd65f835e92fe12" style="width: 100.0%; height: 100.0%;">Nöqtə 37 (Maşın 1)</div>`)[0];
+                popup_9081a54c9fde7ae8ff2cf23dcb57281c.setContent(html_6d1a8b7b2f47338cfbd65f835e92fe12);
+            
+        
+
+        circle_marker_3094ce65479c69be610f330d1dcf1089.bindPopup(popup_9081a54c9fde7ae8ff2cf23dcb57281c)
+        ;
+
+        
+    
+    
+            var circle_marker_ad460a8580d01f555599943817614689 = L.circleMarker(
+                [40.38117110760894, 49.88180147659224],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_7ac2f0a27f24c9a60147b5975e4fd04f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_26adf1d5d8a9911f79e853bca1dd66cf = $(`<div id="html_26adf1d5d8a9911f79e853bca1dd66cf" style="width: 100.0%; height: 100.0%;">Nöqtə 47 (Maşın 1)</div>`)[0];
+                popup_7ac2f0a27f24c9a60147b5975e4fd04f.setContent(html_26adf1d5d8a9911f79e853bca1dd66cf);
+            
+        
+
+        circle_marker_ad460a8580d01f555599943817614689.bindPopup(popup_7ac2f0a27f24c9a60147b5975e4fd04f)
+        ;
+
+        
+    
+    
+            var circle_marker_d3df83b5dacece4e2b158a40f4f2cb2d = L.circleMarker(
+                [40.387454011884735, 49.88631034258756],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_356b8139c87722b6acd63965ebabf30e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0a193c5dba1029858ffd3d7937e53701 = $(`<div id="html_0a193c5dba1029858ffd3d7937e53701" style="width: 100.0%; height: 100.0%;">Nöqtə 1 (Maşın 1)</div>`)[0];
+                popup_356b8139c87722b6acd63965ebabf30e.setContent(html_0a193c5dba1029858ffd3d7937e53701);
+            
+        
+
+        circle_marker_d3df83b5dacece4e2b158a40f4f2cb2d.bindPopup(popup_356b8139c87722b6acd63965ebabf30e)
+        ;
+
+        
+    
+    
+            var circle_marker_9b609ca9e027858d74c5c2faf5ffaf43 = L.circleMarker(
+                [40.38886772896895, 49.89624472949421],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_576c1e55faf742f4c9306fcd0f3c55df = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a9f37d8b8e5f1dcf7093420166313804 = $(`<div id="html_a9f37d8b8e5f1dcf7093420166313804" style="width: 100.0%; height: 100.0%;">Nöqtə 61 (Maşın 1)</div>`)[0];
+                popup_576c1e55faf742f4c9306fcd0f3c55df.setContent(html_a9f37d8b8e5f1dcf7093420166313804);
+            
+        
+
+        circle_marker_9b609ca9e027858d74c5c2faf5ffaf43.bindPopup(popup_576c1e55faf742f4c9306fcd0f3c55df)
+        ;
+
+        
+    
+    
+            var circle_marker_8a72ca25388729f8925246d393676780 = L.circleMarker(
+                [40.35650515929853, 49.892969765234255],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_d63fa9cae725e994df6208780e10398f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_46f2978e32f14fd342f328dbec49d2f4 = $(`<div id="html_46f2978e32f14fd342f328dbec49d2f4" style="width: 100.0%; height: 100.0%;">Nöqtə 33 (Maşın 1)</div>`)[0];
+                popup_d63fa9cae725e994df6208780e10398f.setContent(html_46f2978e32f14fd342f328dbec49d2f4);
+            
+        
+
+        circle_marker_8a72ca25388729f8925246d393676780.bindPopup(popup_d63fa9cae725e994df6208780e10398f)
+        ;
+
+        
+    
+    
+            var circle_marker_0638ef65e1d88ec60bd316ebfa7021d4 = L.circleMarker(
+                [40.36220382348448, 49.880744015516406],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_997314f6d943d8b86fceaf7ed6269d3f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_892859264a23eecb8a7f3ab4b67bb6b3 = $(`<div id="html_892859264a23eecb8a7f3ab4b67bb6b3" style="width: 100.0%; height: 100.0%;">Nöqtə 41 (Maşın 1)</div>`)[0];
+                popup_997314f6d943d8b86fceaf7ed6269d3f.setContent(html_892859264a23eecb8a7f3ab4b67bb6b3);
+            
+        
+
+        circle_marker_0638ef65e1d88ec60bd316ebfa7021d4.bindPopup(popup_997314f6d943d8b86fceaf7ed6269d3f)
+        ;
+
+        
+    
+    
+            var circle_marker_dcda31894d187bc5820ef2e7dfec6b34 = L.circleMarker(
+                [40.36818249672071, 49.87709671799546],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_f055caf68c3bcd909c873ee3baac726e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ce083fa179ddb66f7d44d0b99497edc4 = $(`<div id="html_ce083fa179ddb66f7d44d0b99497edc4" style="width: 100.0%; height: 100.0%;">Nöqtə 15 (Maşın 1)</div>`)[0];
+                popup_f055caf68c3bcd909c873ee3baac726e.setContent(html_ce083fa179ddb66f7d44d0b99497edc4);
+            
+        
+
+        circle_marker_dcda31894d187bc5820ef2e7dfec6b34.bindPopup(popup_f055caf68c3bcd909c873ee3baac726e)
+        ;
+
+        
+    
+    
+            var circle_marker_6f691361142900ed480eb7ffd1bd349a = L.circleMarker(
+                [40.36959828624192, 49.87030189588952],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_5c509abc0b7cd6704a2b69dc02abbb90 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d48cbe82a4d72399aa6cc791a7ac61e7 = $(`<div id="html_d48cbe82a4d72399aa6cc791a7ac61e7" style="width: 100.0%; height: 100.0%;">Nöqtə 58 (Maşın 1)</div>`)[0];
+                popup_5c509abc0b7cd6704a2b69dc02abbb90.setContent(html_d48cbe82a4d72399aa6cc791a7ac61e7);
+            
+        
+
+        circle_marker_6f691361142900ed480eb7ffd1bd349a.bindPopup(popup_5c509abc0b7cd6704a2b69dc02abbb90)
+        ;
+
+        
+    
+    
+            var circle_marker_ae522439644cbfefc58954103abdba0c = L.circleMarker(
+                [40.36394938606521, 49.86364104112638],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_1de917b7e977bc13cb2f279251afea1b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8006ad9e721da3926aec060dc3617bae = $(`<div id="html_8006ad9e721da3926aec060dc3617bae" style="width: 100.0%; height: 100.0%;">Nöqtə 22 (Maşın 1)</div>`)[0];
+                popup_1de917b7e977bc13cb2f279251afea1b.setContent(html_8006ad9e721da3926aec060dc3617bae);
+            
+        
+
+        circle_marker_ae522439644cbfefc58954103abdba0c.bindPopup(popup_1de917b7e977bc13cb2f279251afea1b)
+        ;
+
+        
+    
+    
+            var circle_marker_b716bf2644dedf657c382c2441e38677 = L.circleMarker(
+                [40.36409242249748, 49.86095643339799],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_db8e52bc0b8b1d4714d8fa2f0dba0144 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a8e43fb2a5f4a6e198f2113389f7285d = $(`<div id="html_a8e43fb2a5f4a6e198f2113389f7285d" style="width: 100.0%; height: 100.0%;">Nöqtə 67 (Maşın 1)</div>`)[0];
+                popup_db8e52bc0b8b1d4714d8fa2f0dba0144.setContent(html_a8e43fb2a5f4a6e198f2113389f7285d);
+            
+        
+
+        circle_marker_b716bf2644dedf657c382c2441e38677.bindPopup(popup_db8e52bc0b8b1d4714d8fa2f0dba0144)
+        ;
+
+        
+    
+    
+            var circle_marker_5e989dd2069f48c4c76a780878204b92 = L.circleMarker(
+                [40.3588492502052, 49.85187906217433],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_f2b5f897c9c2c3c2f02583ebd1217a89 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fae2e84f6e49621fd7bbf5179e134241 = $(`<div id="html_fae2e84f6e49621fd7bbf5179e134241" style="width: 100.0%; height: 100.0%;">Nöqtə 57 (Maşın 1)</div>`)[0];
+                popup_f2b5f897c9c2c3c2f02583ebd1217a89.setContent(html_fae2e84f6e49621fd7bbf5179e134241);
+            
+        
+
+        circle_marker_5e989dd2069f48c4c76a780878204b92.bindPopup(popup_f2b5f897c9c2c3c2f02583ebd1217a89)
+        ;
+
+        
+    
+    
+            var circle_marker_0cd38254b080680d18bf82b4d9601aea = L.circleMarker(
+                [40.354522728891055, 49.83636296023793],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_f34dd142a7c582618d36ab7976ad34b9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8aa07113a51573eee1a0fae95c066cd2 = $(`<div id="html_8aa07113a51573eee1a0fae95c066cd2" style="width: 100.0%; height: 100.0%;">Nöqtə 59 (Maşın 1)</div>`)[0];
+                popup_f34dd142a7c582618d36ab7976ad34b9.setContent(html_8aa07113a51573eee1a0fae95c066cd2);
+            
+        
+
+        circle_marker_0cd38254b080680d18bf82b4d9601aea.bindPopup(popup_f34dd142a7c582618d36ab7976ad34b9)
+        ;
+
+        
+    
+    
+            var circle_marker_d27a65bd1e14ed2e468a661324d90c3d = L.circleMarker(
+                [40.35343885211152, 49.83180034749719],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_459891f820c18eabf36e66a07ed74d46 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_456e664b2f479abcecdaf93e9cf22d44 = $(`<div id="html_456e664b2f479abcecdaf93e9cf22d44" style="width: 100.0%; height: 100.0%;">Nöqtə 43 (Maşın 1)</div>`)[0];
+                popup_459891f820c18eabf36e66a07ed74d46.setContent(html_456e664b2f479abcecdaf93e9cf22d44);
+            
+        
+
+        circle_marker_d27a65bd1e14ed2e468a661324d90c3d.bindPopup(popup_459891f820c18eabf36e66a07ed74d46)
+        ;
+
+        
+    
+    
+            var circle_marker_11d3ea753f32bbf2bcf89be2d093e6f2 = L.circleMarker(
+                [40.35055221171236, 49.81448948720912],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_a392dfad0e7d96e38b365a55698bfa6f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9a43ed5cf94f382e4c55c0f9e9e6bd32 = $(`<div id="html_9a43ed5cf94f382e4c55c0f9e9e6bd32" style="width: 100.0%; height: 100.0%;">Nöqtə 73 (Maşın 1)</div>`)[0];
+                popup_a392dfad0e7d96e38b365a55698bfa6f.setContent(html_9a43ed5cf94f382e4c55c0f9e9e6bd32);
+            
+        
+
+        circle_marker_11d3ea753f32bbf2bcf89be2d093e6f2.bindPopup(popup_a392dfad0e7d96e38b365a55698bfa6f)
+        ;
+
+        
+    
+    
+            var circle_marker_f4c5c0145605a7fd86e012e428fa99b8 = L.circleMarker(
+                [40.35205844942959, 49.81195942459383],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_1b226823a0ac6686b26bb71ff3fd7356 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f3060f48ea7790060a4f4ad9d71ab0af = $(`<div id="html_f3060f48ea7790060a4f4ad9d71ab0af" style="width: 100.0%; height: 100.0%;">Nöqtə 11 (Maşın 1)</div>`)[0];
+                popup_1b226823a0ac6686b26bb71ff3fd7356.setContent(html_f3060f48ea7790060a4f4ad9d71ab0af);
+            
+        
+
+        circle_marker_f4c5c0145605a7fd86e012e428fa99b8.bindPopup(popup_1b226823a0ac6686b26bb71ff3fd7356)
+        ;
+
+        
+    
+    
+            var circle_marker_51605fa5cc2eb35f42b7c3bbd614c0f2 = L.circleMarker(
+                [40.354645041272, 49.80769799098288],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_9607873b8239126118df46c7eecc83f4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3a4dea3e89d37356c2194924d9d99c07 = $(`<div id="html_3a4dea3e89d37356c2194924d9d99c07" style="width: 100.0%; height: 100.0%;">Nöqtə 30 (Maşın 1)</div>`)[0];
+                popup_9607873b8239126118df46c7eecc83f4.setContent(html_3a4dea3e89d37356c2194924d9d99c07);
+            
+        
+
+        circle_marker_51605fa5cc2eb35f42b7c3bbd614c0f2.bindPopup(popup_9607873b8239126118df46c7eecc83f4)
+        ;
+
+        
+    
+    
+            var circle_marker_6c645834c255c633c5b8b9d49d07a3eb = L.circleMarker(
+                [40.357455064367976, 49.805147875125],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_433604a406d9de07bc3f4336ec9aec49 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7a53ffefda8e3ab175b4b9c4aa54c5dc = $(`<div id="html_7a53ffefda8e3ab175b4b9c4aa54c5dc" style="width: 100.0%; height: 100.0%;">Nöqtə 69 (Maşın 1)</div>`)[0];
+                popup_433604a406d9de07bc3f4336ec9aec49.setContent(html_7a53ffefda8e3ab175b4b9c4aa54c5dc);
+            
+        
+
+        circle_marker_6c645834c255c633c5b8b9d49d07a3eb.bindPopup(popup_433604a406d9de07bc3f4336ec9aec49)
+        ;
+
+        
+    
+    
+            var circle_marker_c927c661d3dd3139a69481f6fffc4b13 = L.circleMarker(
+                [40.35976721140064, 49.8186570058886],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_fcea19d9ae91939c2cb3bcf394953f63 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8ade72067803f6663df52dcff4b7c0b7 = $(`<div id="html_8ade72067803f6663df52dcff4b7c0b7" style="width: 100.0%; height: 100.0%;">Nöqtə 38 (Maşın 1)</div>`)[0];
+                popup_fcea19d9ae91939c2cb3bcf394953f63.setContent(html_8ade72067803f6663df52dcff4b7c0b7);
+            
+        
+
+        circle_marker_c927c661d3dd3139a69481f6fffc4b13.bindPopup(popup_fcea19d9ae91939c2cb3bcf394953f63)
+        ;
+
+        
+    
+    
+            var poly_line_169b009668044f3907da17e47a2e0184 = L.polyline(
+                [[40.4, 49.85], [40.38046137691734, 49.88036720768991], [40.38117110760894, 49.88180147659224], [40.387454011884735, 49.88631034258756], [40.38886772896895, 49.89624472949421], [40.35650515929853, 49.892969765234255], [40.36220382348448, 49.880744015516406], [40.36818249672071, 49.87709671799546], [40.36959828624192, 49.87030189588952], [40.36394938606521, 49.86364104112638], [40.36409242249748, 49.86095643339799], [40.3588492502052, 49.85187906217433], [40.354522728891055, 49.83636296023793], [40.35343885211152, 49.83180034749719], [40.35055221171236, 49.81448948720912], [40.35205844942959, 49.81195942459383], [40.354645041272, 49.80769799098288], [40.357455064367976, 49.805147875125], [40.35976721140064, 49.8186570058886], [40.4, 49.85]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_56bd324c0ace80606c8a47a85cb6cf0e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d735935bb7a2ddbe4463fc2bd95b949d = $(`<div id="html_d735935bb7a2ddbe4463fc2bd95b949d" style="width: 100.0%; height: 100.0%;">Maşın 1 marşrutu</div>`)[0];
+                popup_56bd324c0ace80606c8a47a85cb6cf0e.setContent(html_d735935bb7a2ddbe4463fc2bd95b949d);
+            
+        
+
+        poly_line_169b009668044f3907da17e47a2e0184.bindPopup(popup_56bd324c0ace80606c8a47a85cb6cf0e)
+        ;
+
+        
+    
+    
+            var circle_marker_b736002352eac7b2fd7de667cb8c3f39 = L.circleMarker(
+                [40.394015249373965, 49.85393422419156],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_08333dd024c812d0b3560b68de7c0fb3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c9aaba0b209a85d67fc37c34df290faa = $(`<div id="html_c9aaba0b209a85d67fc37c34df290faa" style="width: 100.0%; height: 100.0%;">Nöqtə 40 (Maşın 2)</div>`)[0];
+                popup_08333dd024c812d0b3560b68de7c0fb3.setContent(html_c9aaba0b209a85d67fc37c34df290faa);
+            
+        
+
+        circle_marker_b736002352eac7b2fd7de667cb8c3f39.bindPopup(popup_08333dd024c812d0b3560b68de7c0fb3)
+        ;
+
+        
+    
+    
+            var circle_marker_f8d0ca206c43eb0e0cfa34629e0838c2 = L.circleMarker(
+                [40.38663618432937, 49.85085706911647],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_0281e77da645150c887a6db47279dee5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3912ab151c2395045798304b252188b5 = $(`<div id="html_3912ab151c2395045798304b252188b5" style="width: 100.0%; height: 100.0%;">Nöqtə 24 (Maşın 2)</div>`)[0];
+                popup_0281e77da645150c887a6db47279dee5.setContent(html_3912ab151c2395045798304b252188b5);
+            
+        
+
+        circle_marker_f8d0ca206c43eb0e0cfa34629e0838c2.bindPopup(popup_0281e77da645150c887a6db47279dee5)
+        ;
+
+        
+    
+    
+            var circle_marker_35b53143de92480c2a0cb06083df9772 = L.circleMarker(
+                [40.38042422429596, 49.8522732829382],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_e8e1b5e2bddd06be7d2b2f95f801dfb5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_11e9610608373ff8932a97991e56a347 = $(`<div id="html_11e9610608373ff8932a97991e56a347" style="width: 100.0%; height: 100.0%;">Nöqtə 17 (Maşın 2)</div>`)[0];
+                popup_e8e1b5e2bddd06be7d2b2f95f801dfb5.setContent(html_11e9610608373ff8932a97991e56a347);
+            
+        
+
+        circle_marker_35b53143de92480c2a0cb06083df9772.bindPopup(popup_e8e1b5e2bddd06be7d2b2f95f801dfb5)
+        ;
+
+        
+    
+    
+            var circle_marker_1b4a1b2644b2b0819bd57abf9c3efb14 = L.circleMarker(
+                [40.37123391106783, 49.85612771975695],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_351011d896be4132f33d620aa30e929c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_39cab31ed46b1fc2c032090799772966 = $(`<div id="html_39cab31ed46b1fc2c032090799772966" style="width: 100.0%; height: 100.0%;">Nöqtə 14 (Maşın 2)</div>`)[0];
+                popup_351011d896be4132f33d620aa30e929c.setContent(html_39cab31ed46b1fc2c032090799772966);
+            
+        
+
+        circle_marker_1b4a1b2644b2b0819bd57abf9c3efb14.bindPopup(popup_351011d896be4132f33d620aa30e929c)
+        ;
+
+        
+    
+    
+            var circle_marker_e7a349fac9d88410d390c19faa00edea = L.circleMarker(
+                [40.361586905952514, 49.87282163486118],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_3de135b906af1d8b9b7583b5a8c26cdc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8ef5909f6cfe99946301c9e9498dbf11 = $(`<div id="html_8ef5909f6cfe99946301c9e9498dbf11" style="width: 100.0%; height: 100.0%;">Nöqtə 80 (Maşın 2)</div>`)[0];
+                popup_3de135b906af1d8b9b7583b5a8c26cdc.setContent(html_8ef5909f6cfe99946301c9e9498dbf11);
+            
+        
+
+        circle_marker_e7a349fac9d88410d390c19faa00edea.bindPopup(popup_3de135b906af1d8b9b7583b5a8c26cdc)
+        ;
+
+        
+    
+    
+            var circle_marker_1e48a123401859166f28155b5e383124 = L.circleMarker(
+                [40.35580836121682, 49.872960617833805],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_5b516771cde044d2dc1ac328028272d2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2cbe3d37ca75db8efbad011bdb143bee = $(`<div id="html_2cbe3d37ca75db8efbad011bdb143bee" style="width: 100.0%; height: 100.0%;">Nöqtə 7 (Maşın 2)</div>`)[0];
+                popup_5b516771cde044d2dc1ac328028272d2.setContent(html_2cbe3d37ca75db8efbad011bdb143bee);
+            
+        
+
+        circle_marker_1e48a123401859166f28155b5e383124.bindPopup(popup_5b516771cde044d2dc1ac328028272d2)
+        ;
+
+        
+    
+    
+            var circle_marker_9bc422c2cd20dc78fcab30505ef3c5e7 = L.circleMarker(
+                [40.36848544555255, 49.85107473025776],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_d232972305010ef06cf47cac06d9c0d5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0b895e9889a1fbfd3982bf72849c54c9 = $(`<div id="html_0b895e9889a1fbfd3982bf72849c54c9" style="width: 100.0%; height: 100.0%;">Nöqtə 50 (Maşın 2)</div>`)[0];
+                popup_d232972305010ef06cf47cac06d9c0d5.setContent(html_0b895e9889a1fbfd3982bf72849c54c9);
+            
+        
+
+        circle_marker_9bc422c2cd20dc78fcab30505ef3c5e7.bindPopup(popup_d232972305010ef06cf47cac06d9c0d5)
+        ;
+
+        
+    
+    
+            var circle_marker_e13a310e1ff98d0d0bcdbcf901ac9393 = L.circleMarker(
+                [40.36834045098534, 49.84937955963644],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_d0a92037c984762d02c376319c87383d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_22494fb7909d9ca3d617f2a62eb6e5e3 = $(`<div id="html_22494fb7909d9ca3d617f2a62eb6e5e3" style="width: 100.0%; height: 100.0%;">Nöqtə 16 (Maşın 2)</div>`)[0];
+                popup_d0a92037c984762d02c376319c87383d.setContent(html_22494fb7909d9ca3d617f2a62eb6e5e3);
+            
+        
+
+        circle_marker_e13a310e1ff98d0d0bcdbcf901ac9393.bindPopup(popup_d0a92037c984762d02c376319c87383d)
+        ;
+
+        
+    
+    
+            var circle_marker_2d6e23e8aa1171fadfd5b5454ace0c7e = L.circleMarker(
+                [40.36996737821584, 49.84103829230356],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_86093460787679bd4aedf306450536aa = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ba61fe6d207145cecdc044b9a412649f = $(`<div id="html_ba61fe6d207145cecdc044b9a412649f" style="width: 100.0%; height: 100.0%;">Nöqtə 27 (Maşın 2)</div>`)[0];
+                popup_86093460787679bd4aedf306450536aa.setContent(html_ba61fe6d207145cecdc044b9a412649f);
+            
+        
+
+        circle_marker_2d6e23e8aa1171fadfd5b5454ace0c7e.bindPopup(popup_86093460787679bd4aedf306450536aa)
+        ;
+
+        
+    
+    
+            var circle_marker_711628801ddf5388c2c4ab137f72e3c1 = L.circleMarker(
+                [40.36559945203362, 49.83251833220268],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_7e60ef4ec77b55894ee442dd2040c5e6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_42d094f139e6b15c80f79e7f701e4e1b = $(`<div id="html_42d094f139e6b15c80f79e7f701e4e1b" style="width: 100.0%; height: 100.0%;">Nöqtə 6 (Maşın 2)</div>`)[0];
+                popup_7e60ef4ec77b55894ee442dd2040c5e6.setContent(html_42d094f139e6b15c80f79e7f701e4e1b);
+            
+        
+
+        circle_marker_711628801ddf5388c2c4ab137f72e3c1.bindPopup(popup_7e60ef4ec77b55894ee442dd2040c5e6)
+        ;
+
+        
+    
+    
+            var circle_marker_54c9c04e9539a0362c633ae77e3413c7 = L.circleMarker(
+                [40.36560186404424, 49.83109823217156],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_fd20e476e033551e1fe46c6c023b0780 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_39ec2252634e07c78b307435f2463463 = $(`<div id="html_39ec2252634e07c78b307435f2463463" style="width: 100.0%; height: 100.0%;">Nöqtə 5 (Maşın 2)</div>`)[0];
+                popup_fd20e476e033551e1fe46c6c023b0780.setContent(html_39ec2252634e07c78b307435f2463463);
+            
+        
+
+        circle_marker_54c9c04e9539a0362c633ae77e3413c7.bindPopup(popup_fd20e476e033551e1fe46c6c023b0780)
+        ;
+
+        
+    
+    
+            var circle_marker_f653aa3dd46463b66759271044d8598e = L.circleMarker(
+                [40.36987156815342, 49.82395618906669],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_f4932801f0fa51c0bd0ae96d2cd32113 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_141de4d5458ab8af4cf966ef39543589 = $(`<div id="html_141de4d5458ab8af4cf966ef39543589" style="width: 100.0%; height: 100.0%;">Nöqtə 72 (Maşın 2)</div>`)[0];
+                popup_f4932801f0fa51c0bd0ae96d2cd32113.setContent(html_141de4d5458ab8af4cf966ef39543589);
+            
+        
+
+        circle_marker_f653aa3dd46463b66759271044d8598e.bindPopup(popup_f4932801f0fa51c0bd0ae96d2cd32113)
+        ;
+
+        
+    
+    
+            var circle_marker_5ddf41c00c38a5baadb83fe613578c90 = L.circleMarker(
+                [40.36705241236873, 49.8161221287254],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_2d214e5fd56fff209730fc22da745b24 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8225cf6bde2d3378024cc316fa4ccc26 = $(`<div id="html_8225cf6bde2d3378024cc316fa4ccc26" style="width: 100.0%; height: 100.0%;">Nöqtə 32 (Maşın 2)</div>`)[0];
+                popup_2d214e5fd56fff209730fc22da745b24.setContent(html_8225cf6bde2d3378024cc316fa4ccc26);
+            
+        
+
+        circle_marker_5ddf41c00c38a5baadb83fe613578c90.bindPopup(popup_2d214e5fd56fff209730fc22da745b24)
+        ;
+
+        
+    
+    
+            var circle_marker_ee5cbe203ac9039f6b600ad81dddebce = L.circleMarker(
+                [40.3791229140198, 49.81078914269933],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_4cfc5d3ca91635d56815e797b57abe83 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_eca764e53e3009725b7fff2d95812b8e = $(`<div id="html_eca764e53e3009725b7fff2d95812b8e" style="width: 100.0%; height: 100.0%;">Nöqtə 20 (Maşın 2)</div>`)[0];
+                popup_4cfc5d3ca91635d56815e797b57abe83.setContent(html_eca764e53e3009725b7fff2d95812b8e);
+            
+        
+
+        circle_marker_ee5cbe203ac9039f6b600ad81dddebce.bindPopup(popup_4cfc5d3ca91635d56815e797b57abe83)
+        ;
+
+        
+    
+    
+            var circle_marker_0fcf050406e57f1917946a23445aa2e2 = L.circleMarker(
+                [40.37587799816, 49.822793516254194],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_f32b2d3143f7ba84a09cb56c610707e6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e6f5b3d81895fbffcec17398336cc76e = $(`<div id="html_e6f5b3d81895fbffcec17398336cc76e" style="width: 100.0%; height: 100.0%;">Nöqtə 45 (Maşın 2)</div>`)[0];
+                popup_f32b2d3143f7ba84a09cb56c610707e6.setContent(html_e6f5b3d81895fbffcec17398336cc76e);
+            
+        
+
+        circle_marker_0fcf050406e57f1917946a23445aa2e2.bindPopup(popup_f32b2d3143f7ba84a09cb56c610707e6)
+        ;
+
+        
+    
+    
+            var circle_marker_0a4899357bbdbcd01c08ea5bf18d9989 = L.circleMarker(
+                [40.37713490317739, 49.82517822958253],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_2a76b73645e230c19707449d19fedb18 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_00c763425d4f31bb6363caf5937646a6 = $(`<div id="html_00c763425d4f31bb6363caf5937646a6" style="width: 100.0%; height: 100.0%;">Nöqtə 62 (Maşın 2)</div>`)[0];
+                popup_2a76b73645e230c19707449d19fedb18.setContent(html_00c763425d4f31bb6363caf5937646a6);
+            
+        
+
+        circle_marker_0a4899357bbdbcd01c08ea5bf18d9989.bindPopup(popup_2a76b73645e230c19707449d19fedb18)
+        ;
+
+        
+    
+    
+            var circle_marker_e99a70330854355ceeaf5de4095137f1 = L.circleMarker(
+                [40.37809345096874, 49.82848404943775],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_3273aa086a734f4732d68802d001a038 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_949b16a5397b16af239ec65441619d36 = $(`<div id="html_949b16a5397b16af239ec65441619d36" style="width: 100.0%; height: 100.0%;">Nöqtə 65 (Maşın 2)</div>`)[0];
+                popup_3273aa086a734f4732d68802d001a038.setContent(html_949b16a5397b16af239ec65441619d36);
+            
+        
+
+        circle_marker_e99a70330854355ceeaf5de4095137f1.bindPopup(popup_3273aa086a734f4732d68802d001a038)
+        ;
+
+        
+    
+    
+            var circle_marker_d9e9b060f4b5922f630b7c2be2b99a21 = L.circleMarker(
+                [40.379214464853526, 49.83143559810763],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_ba1be434888767e97140daf6ffdfe084 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_861409542242017933ce030df7769b8c = $(`<div id="html_861409542242017933ce030df7769b8c" style="width: 100.0%; height: 100.0%;">Nöqtə 23 (Maşın 2)</div>`)[0];
+                popup_ba1be434888767e97140daf6ffdfe084.setContent(html_861409542242017933ce030df7769b8c);
+            
+        
+
+        circle_marker_d9e9b060f4b5922f630b7c2be2b99a21.bindPopup(popup_ba1be434888767e97140daf6ffdfe084)
+        ;
+
+        
+    
+    
+            var circle_marker_f6f08b9453bc8e10e8b57b0066bc665e = L.circleMarker(
+                [40.385846572854426, 49.82376375439924],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_28e6ae653f3a124d0c766d045953b0ab = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d9ceba4c6bdbf46769e0c83b63706fbe = $(`<div id="html_d9ceba4c6bdbf46769e0c83b63706fbe" style="width: 100.0%; height: 100.0%;">Nöqtə 79 (Maşın 2)</div>`)[0];
+                popup_28e6ae653f3a124d0c766d045953b0ab.setContent(html_d9ceba4c6bdbf46769e0c83b63706fbe);
+            
+        
+
+        circle_marker_f6f08b9453bc8e10e8b57b0066bc665e.bindPopup(popup_28e6ae653f3a124d0c766d045953b0ab)
+        ;
+
+        
+    
+    
+            var circle_marker_db9d65132bfe2970dd2ee701a1fd19fe = L.circleMarker(
+                [40.38567533266936, 49.83008783098168],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_347ccee747779b0ade17ebe089660619 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_59630e26cb1d9a22714fc7e6f421411a = $(`<div id="html_59630e26cb1d9a22714fc7e6f421411a" style="width: 100.0%; height: 100.0%;">Nöqtə 64 (Maşın 2)</div>`)[0];
+                popup_347ccee747779b0ade17ebe089660619.setContent(html_59630e26cb1d9a22714fc7e6f421411a);
+            
+        
+
+        circle_marker_db9d65132bfe2970dd2ee701a1fd19fe.bindPopup(popup_347ccee747779b0ade17ebe089660619)
+        ;
+
+        
+    
+    
+            var poly_line_4b77eb6ff84ab827531d1f8f5d7e4172 = L.polyline(
+                [[40.4, 49.85], [40.394015249373965, 49.85393422419156], [40.38663618432937, 49.85085706911647], [40.38042422429596, 49.8522732829382], [40.37123391106783, 49.85612771975695], [40.361586905952514, 49.87282163486118], [40.35580836121682, 49.872960617833805], [40.36848544555255, 49.85107473025776], [40.36834045098534, 49.84937955963644], [40.36996737821584, 49.84103829230356], [40.36559945203362, 49.83251833220268], [40.36560186404424, 49.83109823217156], [40.36987156815342, 49.82395618906669], [40.36705241236873, 49.8161221287254], [40.3791229140198, 49.81078914269933], [40.37587799816, 49.822793516254194], [40.37713490317739, 49.82517822958253], [40.37809345096874, 49.82848404943775], [40.379214464853526, 49.83143559810763], [40.385846572854426, 49.82376375439924], [40.38567533266936, 49.83008783098168], [40.4, 49.85]],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_7292949b6e2dc7f62156f55c5c33d5d4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cb6397af4b90977c55731204d453a7c2 = $(`<div id="html_cb6397af4b90977c55731204d453a7c2" style="width: 100.0%; height: 100.0%;">Maşın 2 marşrutu</div>`)[0];
+                popup_7292949b6e2dc7f62156f55c5c33d5d4.setContent(html_cb6397af4b90977c55731204d453a7c2);
+            
+        
+
+        poly_line_4b77eb6ff84ab827531d1f8f5d7e4172.bindPopup(popup_7292949b6e2dc7f62156f55c5c33d5d4)
+        ;
+
+        
+    
+    
+            var circle_marker_e092bcb2904f1018e4f3b057f1fc465a = L.circleMarker(
+                [40.41625222843541, 49.842710778862624],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_ebbde7722356d5e3dfbc9a282f2255ad = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_43f6e87e6aab56e94bc361b599876235 = $(`<div id="html_43f6e87e6aab56e94bc361b599876235" style="width: 100.0%; height: 100.0%;">Nöqtə 46 (Maşın 3)</div>`)[0];
+                popup_ebbde7722356d5e3dfbc9a282f2255ad.setContent(html_43f6e87e6aab56e94bc361b599876235);
+            
+        
+
+        circle_marker_e092bcb2904f1018e4f3b057f1fc465a.bindPopup(popup_ebbde7722356d5e3dfbc9a282f2255ad)
+        ;
+
+        
+    
+    
+            var circle_marker_1333ac11d4f70202e211dde220167f20 = L.circleMarker(
+                [40.42080725777961, 49.84722149251619],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_cf4d58eafb4e85e8e52cf63c6aa710ac = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c85865d99190c4fb7c2d707a2e06867d = $(`<div id="html_c85865d99190c4fb7c2d707a2e06867d" style="width: 100.0%; height: 100.0%;">Nöqtə 10 (Maşın 3)</div>`)[0];
+                popup_cf4d58eafb4e85e8e52cf63c6aa710ac.setContent(html_c85865d99190c4fb7c2d707a2e06867d);
+            
+        
+
+        circle_marker_1333ac11d4f70202e211dde220167f20.bindPopup(popup_cf4d58eafb4e85e8e52cf63c6aa710ac)
+        ;
+
+        
+    
+    
+            var circle_marker_5c4cb97d8f52edf632efea727bd73526 = L.circleMarker(
+                [40.430219698075405, 49.85026790232288],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_6415e34e295d35379845387f8dd72297 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cceef059811477b03d993cbce111233c = $(`<div id="html_cceef059811477b03d993cbce111233c" style="width: 100.0%; height: 100.0%;">Nöqtə 68 (Maşın 3)</div>`)[0];
+                popup_6415e34e295d35379845387f8dd72297.setContent(html_cceef059811477b03d993cbce111233c);
+            
+        
+
+        circle_marker_5c4cb97d8f52edf632efea727bd73526.bindPopup(popup_6415e34e295d35379845387f8dd72297)
+        ;
+
+        
+    
+    
+            var circle_marker_074825e57eab8dccb27406378e9c0a00 = L.circleMarker(
+                [40.43154614284549, 49.84894527602776],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_1bd1bbd2650c3ba95d197c95c2bef3bd = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d20f912b23987636152a787d05ae8610 = $(`<div id="html_d20f912b23987636152a787d05ae8610" style="width: 100.0%; height: 100.0%;">Nöqtə 74 (Maşın 3)</div>`)[0];
+                popup_1bd1bbd2650c3ba95d197c95c2bef3bd.setContent(html_d20f912b23987636152a787d05ae8610);
+            
+        
+
+        circle_marker_074825e57eab8dccb27406378e9c0a00.bindPopup(popup_1bd1bbd2650c3ba95d197c95c2bef3bd)
+        ;
+
+        
+    
+    
+            var circle_marker_05c666ef7cb86c5760d9ce5d16419e24 = L.circleMarker(
+                [40.43287375091519, 49.84972485058923],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_1ee66bf799f31282975a53483e49fd5b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e90a33d2600690639e0e5e294307377c = $(`<div id="html_e90a33d2600690639e0e5e294307377c" style="width: 100.0%; height: 100.0%;">Nöqtə 63 (Maşın 3)</div>`)[0];
+                popup_1ee66bf799f31282975a53483e49fd5b.setContent(html_e90a33d2600690639e0e5e294307377c);
+            
+        
+
+        circle_marker_05c666ef7cb86c5760d9ce5d16419e24.bindPopup(popup_1ee66bf799f31282975a53483e49fd5b)
+        ;
+
+        
+    
+    
+            var circle_marker_b1590af725992dd78bd5871c6677e0e9 = L.circleMarker(
+                [40.43661761457749, 49.86375574713552],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_4082e772f4c04a269622bf55289e6554 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4edaba1b008f06a20b1f15ded12877b7 = $(`<div id="html_4edaba1b008f06a20b1f15ded12877b7" style="width: 100.0%; height: 100.0%;">Nöqtə 8 (Maşın 3)</div>`)[0];
+                popup_4082e772f4c04a269622bf55289e6554.setContent(html_4edaba1b008f06a20b1f15ded12877b7);
+            
+        
+
+        circle_marker_b1590af725992dd78bd5871c6677e0e9.bindPopup(popup_4082e772f4c04a269622bf55289e6554)
+        ;
+
+        
+    
+    
+            var circle_marker_f39e9437712b253632e80439363e6fb3 = L.circleMarker(
+                [40.44507143064099, 49.86232981268275],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_3f96e189ebc6cd41c0ce14d83262b170 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_021d096fe15beea2b5a7662b784a8ca0 = $(`<div id="html_021d096fe15beea2b5a7662b784a8ca0" style="width: 100.0%; height: 100.0%;">Nöqtə 2 (Maşın 3)</div>`)[0];
+                popup_3f96e189ebc6cd41c0ce14d83262b170.setContent(html_021d096fe15beea2b5a7662b784a8ca0);
+            
+        
+
+        circle_marker_f39e9437712b253632e80439363e6fb3.bindPopup(popup_3f96e189ebc6cd41c0ce14d83262b170)
+        ;
+
+        
+    
+    
+            var circle_marker_3e4cbca8c33d11645828d22499edfe8a = L.circleMarker(
+                [40.446563203307456, 49.86334037565104],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_db5d56f3763225f192d78fd7e250a9b9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_92eb98e3050962aef7b7ae4d6dd12fa5 = $(`<div id="html_92eb98e3050962aef7b7ae4d6dd12fa5" style="width: 100.0%; height: 100.0%;">Nöqtə 35 (Maşın 3)</div>`)[0];
+                popup_db5d56f3763225f192d78fd7e250a9b9.setContent(html_92eb98e3050962aef7b7ae4d6dd12fa5);
+            
+        
+
+        circle_marker_3e4cbca8c33d11645828d22499edfe8a.bindPopup(popup_db5d56f3763225f192d78fd7e250a9b9)
+        ;
+
+        
+    
+    
+            var circle_marker_48852ea918eaf47373f1e0009425b920 = L.circleMarker(
+                [40.4469909852162, 49.8713244787223],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_362115f492600f8327b86b0c9a797a5a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_686990cb9523ba24c13765215fa25ced = $(`<div id="html_686990cb9523ba24c13765215fa25ced" style="width: 100.0%; height: 100.0%;">Nöqtə 12 (Maşın 3)</div>`)[0];
+                popup_362115f492600f8327b86b0c9a797a5a.setContent(html_686990cb9523ba24c13765215fa25ced);
+            
+        
+
+        circle_marker_48852ea918eaf47373f1e0009425b920.bindPopup(popup_362115f492600f8327b86b0c9a797a5a)
+        ;
+
+        
+    
+    
+            var circle_marker_b80d609c5674f177ffb9815797291394 = L.circleMarker(
+                [40.444888553725335, 49.88081203795644],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_d68a1a2047867504fac1088ab6424560 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bc1b9bd771467cdf2090f4ef061312bb = $(`<div id="html_bc1b9bd771467cdf2090f4ef061312bb" style="width: 100.0%; height: 100.0%;">Nöqtə 34 (Maşın 3)</div>`)[0];
+                popup_d68a1a2047867504fac1088ab6424560.setContent(html_bc1b9bd771467cdf2090f4ef061312bb);
+            
+        
+
+        circle_marker_b80d609c5674f177ffb9815797291394.bindPopup(popup_d68a1a2047867504fac1088ab6424560)
+        ;
+
+        
+    
+    
+            var circle_marker_c70d35d8856bcfd88c8bb8ceb953c8a3 = L.circleMarker(
+                [40.433244264080045, 49.87607850486169],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_c333c74975caf816b0a8c113e05109ca = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_81d7e531efa0e4e5ecb466cfeb207531 = $(`<div id="html_81d7e531efa0e4e5ecb466cfeb207531" style="width: 100.0%; height: 100.0%;">Nöqtə 13 (Maşın 3)</div>`)[0];
+                popup_c333c74975caf816b0a8c113e05109ca.setContent(html_81d7e531efa0e4e5ecb466cfeb207531);
+            
+        
+
+        circle_marker_c70d35d8856bcfd88c8bb8ceb953c8a3.bindPopup(popup_c333c74975caf816b0a8c113e05109ca)
+        ;
+
+        
+    
+    
+            var circle_marker_398edd3124aba7eaf6fb4ab9fe59a369 = L.circleMarker(
+                [40.43083973481165, 49.88714605901877],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_9addde211439e519463ac3a351b7b61e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7cf54a0ae6499640643cff2995729fed = $(`<div id="html_7cf54a0ae6499640643cff2995729fed" style="width: 100.0%; height: 100.0%;">Nöqtə 36 (Maşın 3)</div>`)[0];
+                popup_9addde211439e519463ac3a351b7b61e.setContent(html_7cf54a0ae6499640643cff2995729fed);
+            
+        
+
+        circle_marker_398edd3124aba7eaf6fb4ab9fe59a369.bindPopup(popup_9addde211439e519463ac3a351b7b61e)
+        ;
+
+        
+    
+    
+            var circle_marker_4721db501b8f79e6852a4d3e4b348186 = L.circleMarker(
+                [40.42722447692967, 49.89082658859667],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_34dac2cbdc1c011fc2232bd129d1f574 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_97e7fa4586759691b234570dd063fa50 = $(`<div id="html_97e7fa4586759691b234570dd063fa50" style="width: 100.0%; height: 100.0%;">Nöqtə 71 (Maşın 3)</div>`)[0];
+                popup_34dac2cbdc1c011fc2232bd129d1f574.setContent(html_97e7fa4586759691b234570dd063fa50);
+            
+        
+
+        circle_marker_4721db501b8f79e6852a4d3e4b348186.bindPopup(popup_34dac2cbdc1c011fc2232bd129d1f574)
+        ;
+
+        
+    
+    
+            var circle_marker_c171c049a65beeb3d7d0675f6821b1bb = L.circleMarker(
+                [40.42068573438476, 49.89856504541106],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_75ff5d9bf65899be6b09b8cadc936ed5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_54347d251403824252d83ebea4287279 = $(`<div id="html_54347d251403824252d83ebea4287279" style="width: 100.0%; height: 100.0%;">Nöqtə 75 (Maşın 3)</div>`)[0];
+                popup_75ff5d9bf65899be6b09b8cadc936ed5.setContent(html_54347d251403824252d83ebea4287279);
+            
+        
+
+        circle_marker_c171c049a65beeb3d7d0675f6821b1bb.bindPopup(popup_75ff5d9bf65899be6b09b8cadc936ed5)
+        ;
+
+        
+    
+    
+            var circle_marker_4c9067b64542b8855f6c41b4f2a10d2e = L.circleMarker(
+                [40.41842330265122, 49.889255899849],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_b2e8bbf7b88cc9010748fe92e7dae648 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7e3369f1b8c75e6b4515687d4a5616fc = $(`<div id="html_7e3369f1b8c75e6b4515687d4a5616fc" style="width: 100.0%; height: 100.0%;">Nöqtə 39 (Maşın 3)</div>`)[0];
+                popup_b2e8bbf7b88cc9010748fe92e7dae648.setContent(html_7e3369f1b8c75e6b4515687d4a5616fc);
+            
+        
+
+        circle_marker_4c9067b64542b8855f6c41b4f2a10d2e.bindPopup(popup_b2e8bbf7b88cc9010748fe92e7dae648)
+        ;
+
+        
+    
+    
+            var circle_marker_2f46cb6d577da05d33e064224000d7b5 = L.circleMarker(
+                [40.40978999788111, 49.89429097039125],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_229180bed982df4f0c6ab505bc393a65 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_84cd4be5e2396f6add8f283db642e349 = $(`<div id="html_84cd4be5e2396f6add8f283db642e349" style="width: 100.0%; height: 100.0%;">Nöqtə 55 (Maşın 3)</div>`)[0];
+                popup_229180bed982df4f0c6ab505bc393a65.setContent(html_84cd4be5e2396f6add8f283db642e349);
+            
+        
+
+        circle_marker_2f46cb6d577da05d33e064224000d7b5.bindPopup(popup_229180bed982df4f0c6ab505bc393a65)
+        ;
+
+        
+    
+    
+            var circle_marker_4782b419ef3c7f607919559e08682ee0 = L.circleMarker(
+                [40.41011150117432, 49.888721274257634],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_e5f6824df9e66e0eed733df2195d7b72 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_04572b1edb91cec0a14e3c88a1353d17 = $(`<div id="html_04572b1edb91cec0a14e3c88a1353d17" style="width: 100.0%; height: 100.0%;">Nöqtə 9 (Maşın 3)</div>`)[0];
+                popup_e5f6824df9e66e0eed733df2195d7b72.setContent(html_04572b1edb91cec0a14e3c88a1353d17);
+            
+        
+
+        circle_marker_4782b419ef3c7f607919559e08682ee0.bindPopup(popup_e5f6824df9e66e0eed733df2195d7b72)
+        ;
+
+        
+    
+    
+            var circle_marker_e98e69ab5079b681e211324f60dc8742 = L.circleMarker(
+                [40.40142344384137, 49.875555113854304],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_fd1750ff5a3f29cb675bcfb1f2300b28 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a6c88f0ab0b5c79139bc539b9b5b262e = $(`<div id="html_a6c88f0ab0b5c79139bc539b9b5b262e" style="width: 100.0%; height: 100.0%;">Nöqtə 28 (Maşın 3)</div>`)[0];
+                popup_fd1750ff5a3f29cb675bcfb1f2300b28.setContent(html_a6c88f0ab0b5c79139bc539b9b5b262e);
+            
+        
+
+        circle_marker_e98e69ab5079b681e211324f60dc8742.bindPopup(popup_fd1750ff5a3f29cb675bcfb1f2300b28)
+        ;
+
+        
+    
+    
+            var circle_marker_04c1a2551af858697cc63482245f89f8 = L.circleMarker(
+                [40.40200680211778, 49.88607305832564],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_db7ca27c6bc6df7cff1621f8e41fa2f2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fe44fe8fc64e20554b19dad8867d071a = $(`<div id="html_fe44fe8fc64e20554b19dad8867d071a" style="width: 100.0%; height: 100.0%;">Nöqtə 48 (Maşın 3)</div>`)[0];
+                popup_db7ca27c6bc6df7cff1621f8e41fa2f2.setContent(html_fe44fe8fc64e20554b19dad8867d071a);
+            
+        
+
+        circle_marker_04c1a2551af858697cc63482245f89f8.bindPopup(popup_db7ca27c6bc6df7cff1621f8e41fa2f2)
+        ;
+
+        
+    
+    
+            var circle_marker_e573a48789f66732912514c59c29b561 = L.circleMarker(
+                [40.39951769101113, 49.88960912999235],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_78697f43e1cd86aa6b959cbf621862bd = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_572b1cd1c89cd404829e6152a916e60f = $(`<div id="html_572b1cd1c89cd404829e6152a916e60f" style="width: 100.0%; height: 100.0%;">Nöqtə 42 (Maşın 3)</div>`)[0];
+                popup_78697f43e1cd86aa6b959cbf621862bd.setContent(html_572b1cd1c89cd404829e6152a916e60f);
+            
+        
+
+        circle_marker_e573a48789f66732912514c59c29b561.bindPopup(popup_78697f43e1cd86aa6b959cbf621862bd)
+        ;
+
+        
+    
+    
+            var circle_marker_d824a6599c2c86ae3a0b1e39633b796f = L.circleMarker(
+                [40.395606998421705, 49.89075664739261],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_4e3cf59ae39cb2bc44886f4fa9474561 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a7b6b6a26494df8475bb84a6839a7903 = $(`<div id="html_a7b6b6a26494df8475bb84a6839a7903" style="width: 100.0%; height: 100.0%;">Nöqtə 25 (Maşın 3)</div>`)[0];
+                popup_4e3cf59ae39cb2bc44886f4fa9474561.setContent(html_a7b6b6a26494df8475bb84a6839a7903);
+            
+        
+
+        circle_marker_d824a6599c2c86ae3a0b1e39633b796f.bindPopup(popup_4e3cf59ae39cb2bc44886f4fa9474561)
+        ;
+
+        
+    
+    
+            var circle_marker_6681ca84e0a7ca31dd826943ce3be184 = L.circleMarker(
+                [40.38253303307633, 49.897178208272095],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_7c526f191ad303e91aa4f9cdf1ce8bc7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_57262858687c743676dcc9bbeebdce72 = $(`<div id="html_57262858687c743676dcc9bbeebdce72" style="width: 100.0%; height: 100.0%;">Nöqtə 60 (Maşın 3)</div>`)[0];
+                popup_7c526f191ad303e91aa4f9cdf1ce8bc7.setContent(html_57262858687c743676dcc9bbeebdce72);
+            
+        
+
+        circle_marker_6681ca84e0a7ca31dd826943ce3be184.bindPopup(popup_7c526f191ad303e91aa4f9cdf1ce8bc7)
+        ;
+
+        
+    
+    
+            var circle_marker_0a4a008f9e9a60e491957da0b5af6d6e = L.circleMarker(
+                [40.35740446517341, 49.87616196153287],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_304256c6d15038aec1f7d494831d8b96 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ade04cbe36e6347002ba14dc2acd8655 = $(`<div id="html_ade04cbe36e6347002ba14dc2acd8655" style="width: 100.0%; height: 100.0%;">Nöqtə 78 (Maşın 3)</div>`)[0];
+                popup_304256c6d15038aec1f7d494831d8b96.setContent(html_ade04cbe36e6347002ba14dc2acd8655);
+            
+        
+
+        circle_marker_0a4a008f9e9a60e491957da0b5af6d6e.bindPopup(popup_304256c6d15038aec1f7d494831d8b96)
+        ;
+
+        
+    
+    
+            var poly_line_f826257516eeaab76a0dd9560499645f = L.polyline(
+                [[40.4, 49.85], [40.41625222843541, 49.842710778862624], [40.42080725777961, 49.84722149251619], [40.430219698075405, 49.85026790232288], [40.43154614284549, 49.84894527602776], [40.43287375091519, 49.84972485058923], [40.43661761457749, 49.86375574713552], [40.44507143064099, 49.86232981268275], [40.446563203307456, 49.86334037565104], [40.4469909852162, 49.8713244787223], [40.444888553725335, 49.88081203795644], [40.433244264080045, 49.87607850486169], [40.43083973481165, 49.88714605901877], [40.42722447692967, 49.89082658859667], [40.42068573438476, 49.89856504541106], [40.41842330265122, 49.889255899849], [40.40978999788111, 49.89429097039125], [40.41011150117432, 49.888721274257634], [40.40142344384137, 49.875555113854304], [40.40200680211778, 49.88607305832564], [40.39951769101113, 49.88960912999235], [40.395606998421705, 49.89075664739261], [40.38253303307633, 49.897178208272095], [40.35740446517341, 49.87616196153287], [40.4, 49.85]],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_b0d7d99dfd0e4953ce3fbb8b91d2ff3c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_59d27ea1832cb7af353ff1d8c3eed95d = $(`<div id="html_59d27ea1832cb7af353ff1d8c3eed95d" style="width: 100.0%; height: 100.0%;">Maşın 3 marşrutu</div>`)[0];
+                popup_b0d7d99dfd0e4953ce3fbb8b91d2ff3c.setContent(html_59d27ea1832cb7af353ff1d8c3eed95d);
+            
+        
+
+        poly_line_f826257516eeaab76a0dd9560499645f.bindPopup(popup_b0d7d99dfd0e4953ce3fbb8b91d2ff3c)
+        ;
+
+        
+    
+    
+            var circle_marker_811e949d9b061c8faa4f5a6570007380 = L.circleMarker(
+                [40.427127034668594, 49.86721355474059],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_e92d24cc01899adcde73690ac4916050 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_28167f556a0ab83d8f0c2b2fd2bea0ce = $(`<div id="html_28167f556a0ab83d8f0c2b2fd2bea0ce" style="width: 100.0%; height: 100.0%;">Nöqtə 77 (Maşın 4)</div>`)[0];
+                popup_e92d24cc01899adcde73690ac4916050.setContent(html_28167f556a0ab83d8f0c2b2fd2bea0ce);
+            
+        
+
+        circle_marker_811e949d9b061c8faa4f5a6570007380.bindPopup(popup_e92d24cc01899adcde73690ac4916050)
+        ;
+
+        
+    
+    
+            var circle_marker_66b87b1614777007db9518506dce2d79 = L.circleMarker(
+                [40.44695846277646, 49.84174110031488],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_4b7d3ed9f29fecb54b19a2369c9fc2fb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bd12b69723430253b17f2bd22c85f95c = $(`<div id="html_bd12b69723430253b17f2bd22c85f95c" style="width: 100.0%; height: 100.0%;">Nöqtə 51 (Maşın 4)</div>`)[0];
+                popup_4b7d3ed9f29fecb54b19a2369c9fc2fb.setContent(html_bd12b69723430253b17f2bd22c85f95c);
+            
+        
+
+        circle_marker_66b87b1614777007db9518506dce2d79.bindPopup(popup_4b7d3ed9f29fecb54b19a2369c9fc2fb)
+        ;
+
+        
+    
+    
+            var circle_marker_2f23955eaee50014bf61ebe7d0218651 = L.circleMarker(
+                [40.439482735042766, 49.83376151714036],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_0636d027b8d439b61b8c6c48a8b4f3b0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9cde1d1eb2d884ef9d4885d6f1809903 = $(`<div id="html_9cde1d1eb2d884ef9d4885d6f1809903" style="width: 100.0%; height: 100.0%;">Nöqtə 54 (Maşın 4)</div>`)[0];
+                popup_0636d027b8d439b61b8c6c48a8b4f3b0.setContent(html_9cde1d1eb2d884ef9d4885d6f1809903);
+            
+        
+
+        circle_marker_2f23955eaee50014bf61ebe7d0218651.bindPopup(popup_0636d027b8d439b61b8c6c48a8b4f3b0)
+        ;
+
+        
+    
+    
+            var circle_marker_770da161502304eb17c409d806fe4d57 = L.circleMarker(
+                [40.44218742350231, 49.83232029320207],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_0fd9ecf5b739bd6227bfec140d37327a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b976f8ba529c929ad7a4ce9a58ec8147 = $(`<div id="html_b976f8ba529c929ad7a4ce9a58ec8147" style="width: 100.0%; height: 100.0%;">Nöqtə 56 (Maşın 4)</div>`)[0];
+                popup_0fd9ecf5b739bd6227bfec140d37327a.setContent(html_b976f8ba529c929ad7a4ce9a58ec8147);
+            
+        
+
+        circle_marker_770da161502304eb17c409d806fe4d57.bindPopup(popup_0fd9ecf5b739bd6227bfec140d37327a)
+        ;
+
+        
+    
+    
+            var circle_marker_f7b43fe8c888166b996dd5a568cf4895 = L.circleMarker(
+                [40.44868869366005, 49.827864646423656],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_91b7f253710eda4e3c547f622892918e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8ea788c9e77b6d16dc58b0e435ff0e5f = $(`<div id="html_8ea788c9e77b6d16dc58b0e435ff0e5f" style="width: 100.0%; height: 100.0%;">Nöqtə 70 (Maşın 4)</div>`)[0];
+                popup_91b7f253710eda4e3c547f622892918e.setContent(html_8ea788c9e77b6d16dc58b0e435ff0e5f);
+            
+        
+
+        circle_marker_f7b43fe8c888166b996dd5a568cf4895.bindPopup(popup_91b7f253710eda4e3c547f622892918e)
+        ;
+
+        
+    
+    
+            var circle_marker_892165d70f52650842d809a913f7215e = L.circleMarker(
+                [40.44394989415642, 49.811986536733365],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_623c4ed3495d26dc2478d163ee3d74a7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bf300746150fda828b9541beef0842b1 = $(`<div id="html_bf300746150fda828b9541beef0842b1" style="width: 100.0%; height: 100.0%;">Nöqtə 53 (Maşın 4)</div>`)[0];
+                popup_623c4ed3495d26dc2478d163ee3d74a7.setContent(html_bf300746150fda828b9541beef0842b1);
+            
+        
+
+        circle_marker_892165d70f52650842d809a913f7215e.bindPopup(popup_623c4ed3495d26dc2478d163ee3d74a7)
+        ;
+
+        
+    
+    
+            var circle_marker_eccdb461718209b291ec8f72cfa05a53 = L.circleMarker(
+                [40.44093204020788, 49.81100519245277],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_3ab7d0067983bdb557b34eafe67f474c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7c06af1c3b00c5fc1bab627a9f4e77b3 = $(`<div id="html_7c06af1c3b00c5fc1bab627a9f4e77b3" style="width: 100.0%; height: 100.0%;">Nöqtə 44 (Maşın 4)</div>`)[0];
+                popup_3ab7d0067983bdb557b34eafe67f474c.setContent(html_7c06af1c3b00c5fc1bab627a9f4e77b3);
+            
+        
+
+        circle_marker_eccdb461718209b291ec8f72cfa05a53.bindPopup(popup_3ab7d0067983bdb557b34eafe67f474c)
+        ;
+
+        
+    
+    
+            var circle_marker_3af46d7e6c99b6e1fcd2f85000735326 = L.circleMarker(
+                [40.42751328233612, 49.82221078104707],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_40b4d295b99fc39648d66b734ff8e5b2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_90979d5603fbb8dfd6a5ffdb3c89d89a = $(`<div id="html_90979d5603fbb8dfd6a5ffdb3c89d89a" style="width: 100.0%; height: 100.0%;">Nöqtə 52 (Maşın 4)</div>`)[0];
+                popup_40b4d295b99fc39648d66b734ff8e5b2.setContent(html_90979d5603fbb8dfd6a5ffdb3c89d89a);
+            
+        
+
+        circle_marker_3af46d7e6c99b6e1fcd2f85000735326.bindPopup(popup_40b4d295b99fc39648d66b734ff8e5b2)
+        ;
+
+        
+    
+    
+            var circle_marker_450ac316be9ee112944f3bcfe8eece87 = L.circleMarker(
+                [40.4285175961393, 49.82492922291488],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_ec8330469d0741c2a1271f7fdd782867 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c32a2ee2b5d43f77d7c5f6c0dfa61e12 = $(`<div id="html_c32a2ee2b5d43f77d7c5f6c0dfa61e12" style="width: 100.0%; height: 100.0%;">Nöqtə 26 (Maşın 4)</div>`)[0];
+                popup_ec8330469d0741c2a1271f7fdd782867.setContent(html_c32a2ee2b5d43f77d7c5f6c0dfa61e12);
+            
+        
+
+        circle_marker_450ac316be9ee112944f3bcfe8eece87.bindPopup(popup_ec8330469d0741c2a1271f7fdd782867)
+        ;
+
+        
+    
+    
+            var circle_marker_409818219cb8e1007dd96ae877a3eec5 = L.circleMarker(
+                [40.42319939418114, 49.83308980248526],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_3316130b22ff815877797724082b8df2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8b5782c7d87de04e1afd99e15622311c = $(`<div id="html_8b5782c7d87de04e1afd99e15622311c" style="width: 100.0%; height: 100.0%;">Nöqtə 3 (Maşın 4)</div>`)[0];
+                popup_3316130b22ff815877797724082b8df2.setContent(html_8b5782c7d87de04e1afd99e15622311c);
+            
+        
+
+        circle_marker_409818219cb8e1007dd96ae877a3eec5.bindPopup(popup_3316130b22ff815877797724082b8df2)
+        ;
+
+        
+    
+    
+            var circle_marker_0ea34875b52b6c0285359301e677f56c = L.circleMarker(
+                [40.4229007168041, 49.82420552715115],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_300574ef3b9cdd8fdbc746125c93b04d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5fa7fd30fb2d312e7d2eac54ca93ab64 = $(`<div id="html_5fa7fd30fb2d312e7d2eac54ca93ab64" style="width: 100.0%; height: 100.0%;">Nöqtə 76 (Maşın 4)</div>`)[0];
+                popup_300574ef3b9cdd8fdbc746125c93b04d.setContent(html_5fa7fd30fb2d312e7d2eac54ca93ab64);
+            
+        
+
+        circle_marker_0ea34875b52b6c0285359301e677f56c.bindPopup(popup_300574ef3b9cdd8fdbc746125c93b04d)
+        ;
+
+        
+    
+    
+            var circle_marker_d94e8dbb8597ed8741336473a2336cf4 = L.circleMarker(
+                [40.409865848419706, 49.8063558350286],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_405eb2c38c396928737943f1a8c7892b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c8015c1fb897b7ace278a17b77180831 = $(`<div id="html_c8015c1fb897b7ace278a17b77180831" style="width: 100.0%; height: 100.0%;">Nöqtə 4 (Maşın 4)</div>`)[0];
+                popup_405eb2c38c396928737943f1a8c7892b.setContent(html_c8015c1fb897b7ace278a17b77180831);
+            
+        
+
+        circle_marker_d94e8dbb8597ed8741336473a2336cf4.bindPopup(popup_405eb2c38c396928737943f1a8c7892b)
+        ;
+
+        
+    
+    
+            var circle_marker_3e936c15f90447d06c9347397a149dae = L.circleMarker(
+                [40.41118528947224, 49.80314291856867],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_30d5737b7449f01466ff6c2793d763b4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_19e7ba0d99765eacc40bef0e6b2aa96b = $(`<div id="html_19e7ba0d99765eacc40bef0e6b2aa96b" style="width: 100.0%; height: 100.0%;">Nöqtə 21 (Maşın 4)</div>`)[0];
+                popup_30d5737b7449f01466ff6c2793d763b4.setContent(html_19e7ba0d99765eacc40bef0e6b2aa96b);
+            
+        
+
+        circle_marker_3e936c15f90447d06c9347397a149dae.bindPopup(popup_30d5737b7449f01466ff6c2793d763b4)
+        ;
+
+        
+    
+    
+            var circle_marker_f3d842747d71b663dc8c27549e99c0d9 = L.circleMarker(
+                [40.40467102793433, 49.80069521305312],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_a09bb8ca2e9b21fe08e7bd84f5c37a50 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6dfcefa2b30d880179872677318fce38 = $(`<div id="html_6dfcefa2b30d880179872677318fce38" style="width: 100.0%; height: 100.0%;">Nöqtə 49 (Maşın 4)</div>`)[0];
+                popup_a09bb8ca2e9b21fe08e7bd84f5c37a50.setContent(html_6dfcefa2b30d880179872677318fce38);
+            
+        
+
+        circle_marker_f3d842747d71b663dc8c27549e99c0d9.bindPopup(popup_a09bb8ca2e9b21fe08e7bd84f5c37a50)
+        ;
+
+        
+    
+    
+            var circle_marker_f7a33fa562e37c055448cd5eabfbc977 = L.circleMarker(
+                [40.40426960831583, 49.80368869473545],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_5325c769029e091d2c3dbfddfdd7a443 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d930cbc3b16df94411c6db7e18e8efe7 = $(`<div id="html_d930cbc3b16df94411c6db7e18e8efe7" style="width: 100.0%; height: 100.0%;">Nöqtə 66 (Maşın 4)</div>`)[0];
+                popup_5325c769029e091d2c3dbfddfdd7a443.setContent(html_d930cbc3b16df94411c6db7e18e8efe7);
+            
+        
+
+        circle_marker_f7a33fa562e37c055448cd5eabfbc977.bindPopup(popup_5325c769029e091d2c3dbfddfdd7a443)
+        ;
+
+        
+    
+    
+            var circle_marker_787cf12502c7708393c5fb37d9de034b = L.circleMarker(
+                [40.393194501864215, 49.80254191267441],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_b11e3bf5b16df476a5297b1eea361a06 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3aedc0987cad470daa0393ad5ff80d16 = $(`<div id="html_3aedc0987cad470daa0393ad5ff80d16" style="width: 100.0%; height: 100.0%;">Nöqtə 19 (Maşın 4)</div>`)[0];
+                popup_b11e3bf5b16df476a5297b1eea361a06.setContent(html_3aedc0987cad470daa0393ad5ff80d16);
+            
+        
+
+        circle_marker_787cf12502c7708393c5fb37d9de034b.bindPopup(popup_b11e3bf5b16df476a5297b1eea361a06)
+        ;
+
+        
+    
+    
+            var circle_marker_1f59322c5bb8e1ab4dd409fe7683a7c5 = L.circleMarker(
+                [40.40924145688621, 49.82287981654916],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_66b81e04bb275eb46aa2d0d1db4d4395 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_edbe27d2456bfacdf72e60c4113cf712 = $(`<div id="html_edbe27d2456bfacdf72e60c4113cf712" style="width: 100.0%; height: 100.0%;">Nöqtə 29 (Maşın 4)</div>`)[0];
+                popup_66b81e04bb275eb46aa2d0d1db4d4395.setContent(html_edbe27d2456bfacdf72e60c4113cf712);
+            
+        
+
+        circle_marker_1f59322c5bb8e1ab4dd409fe7683a7c5.bindPopup(popup_66b81e04bb275eb46aa2d0d1db4d4395)
+        ;
+
+        
+    
+    
+            var circle_marker_b9c8049b0aeff5121059eaea633ef987 = L.circleMarker(
+                [40.41075448519015, 49.82897514529137],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_b843fc8a9c23538a7344ef4f581bc61f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d2b0a35d27f45dfba4fa32d304cbb677 = $(`<div id="html_d2b0a35d27f45dfba4fa32d304cbb677" style="width: 100.0%; height: 100.0%;">Nöqtə 31 (Maşın 4)</div>`)[0];
+                popup_b843fc8a9c23538a7344ef4f581bc61f.setContent(html_d2b0a35d27f45dfba4fa32d304cbb677);
+            
+        
+
+        circle_marker_b9c8049b0aeff5121059eaea633ef987.bindPopup(popup_b843fc8a9c23538a7344ef4f581bc61f)
+        ;
+
+        
+    
+    
+            var circle_marker_41f60edc7cf593adaf964c7496def42f = L.circleMarker(
+                [40.40247564316323, 49.84275410183585],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_40f55612afbcedcd76fb7fa5005d8ba1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fb9205fc30c0c5380374f5546d627ebe = $(`<div id="html_fb9205fc30c0c5380374f5546d627ebe" style="width: 100.0%; height: 100.0%;">Nöqtə 18 (Maşın 4)</div>`)[0];
+                popup_40f55612afbcedcd76fb7fa5005d8ba1.setContent(html_fb9205fc30c0c5380374f5546d627ebe);
+            
+        
+
+        circle_marker_41f60edc7cf593adaf964c7496def42f.bindPopup(popup_40f55612afbcedcd76fb7fa5005d8ba1)
+        ;
+
+        
+    
+    
+            var poly_line_8f4cca74b25cc0214d3072250b77d042 = L.polyline(
+                [[40.4, 49.85], [40.427127034668594, 49.86721355474059], [40.44695846277646, 49.84174110031488], [40.439482735042766, 49.83376151714036], [40.44218742350231, 49.83232029320207], [40.44868869366005, 49.827864646423656], [40.44394989415642, 49.811986536733365], [40.44093204020788, 49.81100519245277], [40.42751328233612, 49.82221078104707], [40.4285175961393, 49.82492922291488], [40.42319939418114, 49.83308980248526], [40.4229007168041, 49.82420552715115], [40.409865848419706, 49.8063558350286], [40.41118528947224, 49.80314291856867], [40.40467102793433, 49.80069521305312], [40.40426960831583, 49.80368869473545], [40.393194501864215, 49.80254191267441], [40.40924145688621, 49.82287981654916], [40.41075448519015, 49.82897514529137], [40.40247564316323, 49.84275410183585], [40.4, 49.85]],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_5fc97db665a56eed422a759510ea42fa);
+        
+    
+        var popup_3ec524c767fc4d8d7f8d249c0fbc6a29 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a155d8d888a44edfaa421a86991fb2d3 = $(`<div id="html_a155d8d888a44edfaa421a86991fb2d3" style="width: 100.0%; height: 100.0%;">Maşın 4 marşrutu</div>`)[0];
+                popup_3ec524c767fc4d8d7f8d249c0fbc6a29.setContent(html_a155d8d888a44edfaa421a86991fb2d3);
+            
+        
+
+        poly_line_8f4cca74b25cc0214d3072250b77d042.bindPopup(popup_3ec524c767fc4d8d7f8d249c0fbc6a29)
+        ;
+
+        
+    
+</script>
+</html>
