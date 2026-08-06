@@ -1,38 +1,55 @@
 import pandas as pd
 import numpy as np
 
-# Təsadüfi ədədlərin hər dəfə eyni çıxması üçün "toxum" təyin edirik
 np.random.seed(42)
 
-# Neçə çatdırılma nöqtəsi yaradacağıq
-n_points = 80
+# Hər rayon üçün: (mərkəz_lat, mərkəz_lon, lat_sərhəd, lon_sərhəd)
+# Sərhədlər ehtiyatla seçilib ki, heç bir nöqtə dənizə düşməsin
+districts = {
+    'Yasamal':    {'center': (40.3950, 49.8300), 'lat_range': 0.010, 'lon_range': 0.012},
+    'Nesimi':     {'center': (40.3870, 49.8420), 'lat_range': 0.008, 'lon_range': 0.010},
+    'Xetai':      {'center': (40.3750, 49.8550), 'lat_range': 0.008, 'lon_range': 0.010},
+    'Nerimanov':  {'center': (40.4080, 49.8650), 'lat_range': 0.010, 'lon_range': 0.012},
+    'Sebail':     {'center': (40.3720, 49.8280), 'lat_range': 0.006, 'lon_range': 0.008},
+}
 
-# Bakı şəhərinin təxmini enlik/uzunluq (latitude/longitude) sərhədləri
-# Bu, koordinatların Bakı ərazisində "düşməsini" təmin edir
-latitudes = np.random.uniform(40.35, 40.45, n_points)
-longitudes = np.random.uniform(49.80, 49.90, n_points)
+n_points_total = 80
+n_districts = len(districts)
+points_per_district = n_points_total // n_districts
 
-# Hər ünvanın sifariş həcmi (demand) - 1 ilə 10 arasında təsadüfi ədəd
-demands = np.random.randint(1, 10, n_points)
+all_lats = []
+all_lons = []
+all_demands = []
 
-# Anbar (depot) əlavə edirik - bu, 0-cı nöqtə olacaq, bütün marşrutlar buradan başlayır
-depot_lat = 40.40
-depot_lon = 49.85
+for district_name, info in districts.items():
+    center_lat, center_lon = info['center']
+    lat_range = info['lat_range']
+    lon_range = info['lon_range']
 
-# Bütün datanı bir cədvələ (DataFrame) yığırıq
+    # UNIFORM (bərabər) paylanma - sərt sərhədlər daxilində, normal-dan fərqli olaraq
+    # heç bir nöqtə bu sərhədləri keçə bilməz
+    lats = np.random.uniform(center_lat - lat_range, center_lat + lat_range, points_per_district)
+    lons = np.random.uniform(center_lon - lon_range, center_lon + lon_range, points_per_district)
+    demands = np.random.randint(1, 10, points_per_district)
+
+    all_lats.extend(lats)
+    all_lons.extend(lons)
+    all_demands.extend(demands)
+
+# Anbar (depot) - şəhərin quru mərkəzində, təhlükəsiz zonada
+depot_lat = 40.3870
+depot_lon = 49.8420
+
 data = {
-    'point_id': list(range(n_points + 1)),  # 0 = depot, 1-80 = çatdırılma nöqtələri
-    'latitude': [depot_lat] + list(latitudes),
-    'longitude': [depot_lon] + list(longitudes),
-    'demand': [0] + list(demands)  # depot-un tələbi 0-dır
+    'point_id': list(range(len(all_lats) + 1)),
+    'latitude': [depot_lat] + list(all_lats),
+    'longitude': [depot_lon] + list(all_lons),
+    'demand': [0] + list(all_demands)
 }
 
 df = pd.DataFrame(data)
-
-# Nəticəni CSV faylına yazırıq
 df.to_csv('data/delivery_points.csv', index=False)
 
-print("Sintetik data uğurla yaradıldı!")
-print(f"Ümumi nöqtə sayı: {len(df)} (1 depot + {n_points} çatdırılma nöqtəsi)")
-print("\nİlk 5 sətir:")
-print(df.head())
+print("Sintetik data uğurla yeniləndi (sərhədli, təhlükəsiz zonalarla)!")
+print(f"Ümumi nöqtə sayı: {len(df)} (1 depot + {len(all_lats)} çatdırılma nöqtəsi)")
+print(f"Rayonlar: {list(districts.keys())}")
