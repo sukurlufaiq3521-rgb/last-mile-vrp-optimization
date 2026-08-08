@@ -31,7 +31,7 @@ COLORS = ['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00',
           '#ffff33', '#a65628', '#f781bf', '#999999', '#66c2a5']
 
 
-def solve_vrp(num_vehicles, demands, dist_matrix, depot=0):
+def solve_vrp(num_vehicles, demands, dist_matrix, depot=0, balance_weight=0):
     total_demand = sum(demands)
     vehicle_capacities = [total_demand // num_vehicles + 20] * num_vehicles
 
@@ -53,6 +53,12 @@ def solve_vrp(num_vehicles, demands, dist_matrix, depot=0):
     demand_callback_index = routing.RegisterUnaryTransitCallback(demand_callback)
     routing.AddDimensionWithVehicleCapacity(
         demand_callback_index, 0, vehicle_capacities, True, 'Capacity')
+
+    if balance_weight > 0:
+        capacity_dimension = routing.GetDimensionOrDie('Capacity')
+        for vehicle_id in range(num_vehicles):
+            capacity_dimension.SetSpanCostCoefficientForVehicle(
+                int(balance_weight), vehicle_id)
 
     search_parameters = pywrapcp.DefaultRoutingSearchParameters()
     search_parameters.first_solution_strategy = (
@@ -232,12 +238,18 @@ num_vehicles = st.sidebar.slider(
     min_value=2, max_value=10, value=5, step=1
 )
 
+balance_priority = st.sidebar.slider(
+    "Yük Balansı Prioriteti",
+    min_value=0, max_value=100, value=0, step=10,
+    help="0 = yalnız minimum məsafə fokuslanır. 100 = maşınlar arasında bərabər yük bölgüsünə üstünlük verir."
+)
+
 st.sidebar.markdown("---")
 st.sidebar.markdown(f"**Ümumi çatdırılma nöqtəsi:** {len(df) - 1}")
 st.sidebar.markdown(f"**Ümumi sifariş həcmi:** {df['demand'].sum()}")
 
 with st.spinner("Marşrutlar hesablanır (Guided Local Search optimallaşdırması, ~10 saniyə)..."):
-    routes_info = solve_vrp(num_vehicles, df['demand'].tolist(), distance_matrix)
+    routes_info = solve_vrp(num_vehicles, df['demand'].tolist(), distance_matrix, balance_weight=balance_priority)
 
 st.sidebar.markdown("---")
 st.sidebar.subheader("🚛 Görünən Maşınlar")
@@ -302,6 +314,73 @@ st.download_button(
 )
 
 st.markdown("---")
+st.subheader("🔄 Dinamik Yenidən-Optimallaşdırma (Real-Time Simulyasiya)")
+st.markdown(
+    "Bu bölmə, canlı bir sifarişin sistemə necə inteqrasiya olunduğunu simulyasiya edir — "
+    "bütün marşrutu sıfırdan hesablamaq əvəzinə, yeni sifarişi ən uyğun mövcud marşruta əlavə edir."
+)
+
+if st.button("🆕 Yeni Sifariş Simulyasiya Et"):
+    with st.spinner("Yeni sifariş üçün ən yaxşı marşrut axtarılır..."):
+        np.random.seed(None)
+        new_lat = np.random.uniform(40.37, 40.41)
+        new_lon = np.random.uniform(49.83, 49.87)
+        new_demand = np.random.randint(1, 8)
+
+        st.info(f"📍 Yeni sifariş daxil oldu: koordinat ({new_lat:.4f}, {new_lon:.4f}), həcm: {new_demand} vahid")
+
+        best_vehicle = None
+        best_position = None
+        best_extra_cost = float('inf')
+
+        for info in routes_info:
+            if info['vehicle_id'] not in active_vehicles:
+                continue
+
+            route = info['route']
+
+            for pos in range(1, len(route)):
+                prev_point = route[pos - 1]
+                next_point = route[pos]
+
+                prev_lat, prev_lon = df.loc[prev_point, 'latitude'], df.loc[prev_point, 'longitude']
+                next_lat, next_lon = df.loc[next_point, 'latitude'], df.loc[next_point, 'longitude']
+
+                def haversine(lat1, lon1, lat2, lon2):
+                    R = 6371000
+                    phi1, phi2 = np.radians(lat1), np.radians(lat2)
+                    dphi = np.radians(lat2 - lat1)
+                    dlambda = np.radians(lon2 - lon1)
+                    a = np.sin(dphi/2)**2 + np.cos(phi1)*np.cos(phi2)*np.sin(dlambda/2)**2
+                    return R * 2 * np.arctan2(np.sqrt(a), np.sqrt(1-a))
+
+                old_segment = haversine(prev_lat, prev_lon, next_lat, next_lon)
+                new_segment_1 = haversine(prev_lat, prev_lon, new_lat, new_lon)
+                new_segment_2 = haversine(new_lat, new_lon, next_lat, next_lon)
+
+                extra_cost = (new_segment_1 + new_segment_2) - old_segment
+
+                if extra_cost < best_extra_cost:
+                    best_extra_cost = extra_cost
+                    best_vehicle = info['vehicle_id']
+                    best_position = pos
+
+        if best_vehicle is not None:
+            col_a, col_b, col_c = st.columns(3)
+            col_a.metric("Təyin Edilən Maşın", f"Maşın {best_vehicle}")
+            col_b.metric("Əlavə Məsafə", f"{best_extra_cost/1000:.2f} km")
+            col_c.metric("Marşrutda Mövqe", f"{best_position}-ci dayanacaqdan sonra")
+
+            st.success(
+                f"✅ Yeni sifariş **Maşın {best_vehicle}**-in marşrutuna, "
+                f"{best_position}-ci mövqeyə əlavə edildi. "
+                f"Bu, bütün sistemi yenidən hesablamaq əvəzinə, yalnız **{best_extra_cost/1000:.2f} km** "
+                f"əlavə məsafə ilə həll edildi — tam yenidən optimallaşdırmaya nisbətən çox daha sürətli yanaşma."
+            )
+        else:
+            st.warning("Uyğun maşın tapılmadı — bütün maşınlar seçilməyib və ya kapasitet dolu ola bilər.")
+
+st.markdown("---")
 st.subheader("📊 Sensitivity Analiz: Maşın Sayının Təsiri")
 st.markdown("Bu bölmə, nəqliyyat vasitəsi sayının ümumi məsafəyə təsirini göstərir — filo ölçüsü qərarları üçün analitik dəstək.")
 
@@ -345,85 +424,3 @@ if run_sensitivity:
 
 st.markdown("---")
 st.markdown("*Layihə: [GitHub-da bax](https://github.com/sukurlufaiq3521-rgb/last-mile-vrp-optimization)*")
-# ============================================
-# DİNAMİK YENİDƏN-OPTİMALLAŞDIRMA SİMULYASİYASI
-# ============================================
-st.markdown("---")
-st.subheader("🔄 Dinamik Yenidən-Optimallaşdırma (Real-Time Simulyasiya)")
-st.markdown(
-    "Bu bölmə, canlı bir sifarişin sistemə necə inteqrasiya olunduğunu simulyasiya edir — "
-    "bütün marşrutu sıfırdan hesablamaq əvəzinə, yeni sifarişi ən uyğun mövcud marşruta əlavə edir."
-)
-
-if st.button("🆕 Yeni Sifariş Simulyasiya Et"):
-    with st.spinner("Yeni sifariş üçün ən yaxşı marşrut axtarılır..."):
-
-        # 1. Təsadüfi yeni nöqtə yaradaq (Bakı ərazisində)
-        np.random.seed(None)
-        new_lat = np.random.uniform(40.37, 40.41)
-        new_lon = np.random.uniform(49.83, 49.87)
-        new_demand = np.random.randint(1, 8)
-
-        st.info(f"📍 Yeni sifariş daxil oldu: koordinat ({new_lat:.4f}, {new_lon:.4f}), həcm: {new_demand} vahid")
-
-        # 2. Bu yeni nöqtəni hər mövcud maşının marşrutuna əlavə etməyin
-        #    "marginal xərcini" hesablayaq (insertion heuristic)
-        best_vehicle = None
-        best_position = None
-        best_extra_cost = float('inf')
-
-        from osrm_helper import get_real_route
-
-        cache = load_cache()
-
-        for info in routes_info:
-            if info['vehicle_id'] not in active_vehicles:
-                continue
-
-            route = info['route']
-
-            # Marşrutun hər mövcud "arasına" yeni nöqtəni qoymağı sınayaq
-            for pos in range(1, len(route)):
-                prev_point = route[pos - 1]
-                next_point = route[pos]
-
-                prev_lat, prev_lon = df.loc[prev_point, 'latitude'], df.loc[prev_point, 'longitude']
-                next_lat, next_lon = df.loc[next_point, 'latitude'], df.loc[next_point, 'longitude']
-
-                # Köhnə seqmentin məsafəsi (sadə Haversine ilə tez hesablama)
-                def haversine(lat1, lon1, lat2, lon2):
-                    R = 6371000
-                    phi1, phi2 = np.radians(lat1), np.radians(lat2)
-                    dphi = np.radians(lat2 - lat1)
-                    dlambda = np.radians(lon2 - lon1)
-                    a = np.sin(dphi/2)**2 + np.cos(phi1)*np.cos(phi2)*np.sin(dlambda/2)**2
-                    return R * 2 * np.arctan2(np.sqrt(a), np.sqrt(1-a))
-
-                old_segment = haversine(prev_lat, prev_lon, next_lat, next_lon)
-
-                # Yeni nöqtə ilə iki yeni seqment
-                new_segment_1 = haversine(prev_lat, prev_lon, new_lat, new_lon)
-                new_segment_2 = haversine(new_lat, new_lon, next_lat, next_lon)
-
-                extra_cost = (new_segment_1 + new_segment_2) - old_segment
-
-                if extra_cost < best_extra_cost:
-                    best_extra_cost = extra_cost
-                    best_vehicle = info['vehicle_id']
-                    best_position = pos
-
-        # 3. Nəticəni göstərək
-        if best_vehicle is not None:
-            col_a, col_b, col_c = st.columns(3)
-            col_a.metric("Təyin Edilən Maşın", f"Maşın {best_vehicle}")
-            col_b.metric("Əlavə Məsafə", f"{best_extra_cost/1000:.2f} km")
-            col_c.metric("Marşrutda Mövqe", f"{best_position}-ci dayanacaqdan sonra")
-
-            st.success(
-                f"✅ Yeni sifariş **Maşın {best_vehicle}**-in marşrutuna, "
-                f"{best_position}-ci mövqeyə əlavə edildi. "
-                f"Bu, bütün sistemi yenidən hesablamaq əvəzinə, yalnız **{best_extra_cost/1000:.2f} km** "
-                f"əlavə məsafə ilə həll edildi — tam yenidən optimallaşdırmaya nisbətən çox daha sürətli yanaşma."
-            )
-        else:
-            st.warning("Uyğun maşın tapılmadı — bütün maşınlar seçilməyib və ya kapasitet dolu ola bilər.")
