@@ -1,3 +1,4 @@
+![Tests](https://github.com/sukurlufaiq3521-rgb/last-mile-vrp-optimization/actions/workflows/tests.yml/badge.svg)
 # 🚚 Last-Mile Delivery Route Optimization (VRP)
 
 Python və Google OR-Tools istifadə edərək son mərhələ çatdırılma marşrutlarının optimallaşdırılması layihəsi. Bu layihə, real dünya logistika şirkətlərinin (Amazon, DHL, UPS) istifadə etdiyi Vehicle Routing Problem (VRP) metodologiyasını real yol şəbəkəsi inteqrasiyası və tam interaktiv dashboard ilə tətbiq edir.
