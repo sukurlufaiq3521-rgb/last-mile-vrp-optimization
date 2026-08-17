@@ -38,6 +38,7 @@ streamlit run app.py
 Real Bakı yol şəbəkəsi üzərində, hər rəng bir nəqliyyat vasitəsinin marşrutunu göstərir:
 
 ![Route Map](outputs/route_map_screenshot.png)
+![Demo Animation](outputs/demo.gif)
 
 Statik interaktiv versiyalar da mövcuddur:
 - `outputs/enhanced_route_map.html` — statistika və legend ilə zənginləşdirilmiş xəritə

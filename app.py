@@ -10,12 +10,50 @@ from folium.plugins import TimestampedGeoJson
 from datetime import datetime, timedelta
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
+import plotly.express as px
 
 st.set_page_config(
     page_title="Last-Mile Delivery VRP Optimizer",
     page_icon="🚚",
     layout="wide"
 )
+st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Inter', sans-serif;
+}
+
+[data-testid="stSidebar"] {
+    background-color: #1a2332;
+}
+
+[data-testid="stSidebar"] * {
+    color: #e8ecf1 !important;
+}
+
+[data-testid="stMetric"] {
+    background-color: #f8f9fb;
+    border-left: 4px solid #2563eb;
+    border-radius: 6px;
+    padding: 12px 16px;
+}
+
+[data-testid="stMetricLabel"] {
+    font-weight: 600;
+}
+
+h1 {
+    color: #1a2332;
+    font-weight: 700;
+}
+
+h2, h3 {
+    color: #2563eb;
+}
+</style>
+""", unsafe_allow_html=True)
 
 
 @st.cache_data
@@ -27,13 +65,30 @@ def load_data():
 
 df, distance_matrix = load_data()
 
-COLORS = ['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00',
-          '#ffff33', '#a65628', '#f781bf', '#999999', '#66c2a5']
+COLORS = ['#4E79A7', '#F28E2B', '#E15759', '#76B7B2', '#59A14F',
+          '#EDC948', '#B07AA1', '#FF9DA7', '#9C755F', '#BAB0AC']
 
 
+def haversine(lat1, lon1, lat2, lon2):
+    """İki koordinat arasında düz xətt məsafəsini metrlə qaytarır."""
+    R = 6371000
+    phi1, phi2 = np.radians(lat1), np.radians(lat2)
+    dphi = np.radians(lat2 - lat1)
+    dlambda = np.radians(lon2 - lon1)
+    a = np.sin(dphi / 2) ** 2 + np.cos(phi1) * np.cos(phi2) * np.sin(dlambda / 2) ** 2
+    return R * 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
+
+
+def calculate_vehicle_capacity(total_demand, num_vehicles):
+    """Hər maşının tutumunu hesablayır. Solver və UI eyni bu funksiyadan istifadə edir ki,
+    kapasitet rəqəmi hər iki yerdə həmişə sinxron qalsın."""
+    return total_demand // num_vehicles + 20
+
+
+@st.cache_data(show_spinner=False)
 def solve_vrp(num_vehicles, demands, dist_matrix, depot=0, balance_weight=0):
     total_demand = sum(demands)
-    vehicle_capacities = [total_demand // num_vehicles + 20] * num_vehicles
+    vehicle_capacities = [calculate_vehicle_capacity(total_demand, num_vehicles)] * num_vehicles
 
     manager = pywrapcp.RoutingIndexManager(len(dist_matrix), num_vehicles, depot)
     routing = pywrapcp.RoutingModel(manager)
@@ -203,8 +258,12 @@ def create_animated_map(df, routes_info, active_vehicles):
                 'style': {'color': color, 'weight': 4, 'opacity': 0.8},
                 'icon': 'circle',
                 'iconstyle': {
-                    'fillColor': color, 'fillOpacity': 0.9,
-                    'stroke': 'true', 'radius': 7
+                    'fillColor': color,
+                    'fillOpacity': 1,
+                    'stroke': 'true',
+                    'color': 'white',
+                    'weight': 2,
+                    'radius': 9
                 }
             }
         }
@@ -226,11 +285,62 @@ def create_animated_map(df, routes_info, active_vehicles):
     ).add_to(m)
 
     return m
+def create_gantt_chart(routes_info, active_vehicles, avg_speed):
+    """Hər maşının dayanacaqlara çatma vaxtını üfüqi zolaqlı qrafikdə göstərir."""
+    gantt_data = []
+    base_time = datetime(2026, 1, 1, 8, 0, 0)
+
+    for info in routes_info:
+        if info['vehicle_id'] not in active_vehicles or info['stops'] == 0:
+            continue
+
+        cumulative_km = 0
+        route_distance_km = info['distance'] / 1000
+        num_segments = max(info['stops'], 1)
+        avg_segment_km = route_distance_km / num_segments if num_segments > 0 else 0
+
+        for stop_idx in range(1, info['stops'] + 1):
+            cumulative_km += avg_segment_km
+            hours_elapsed = cumulative_km / avg_speed if avg_speed > 0 else 0
+            arrival_time = base_time + timedelta(hours=hours_elapsed)
+            departure_time = arrival_time + timedelta(minutes=10)
+
+            gantt_data.append({
+                'Maşın': f"Maşın {info['vehicle_id']}",
+                'Başlanğıc': arrival_time,
+                'Son': departure_time,
+                'Dayanacaq': f"#{stop_idx}"
+            })
+
+    if not gantt_data:
+        return None
+
+    gantt_df = pd.DataFrame(gantt_data)
+    fig = px.timeline(
+        gantt_df, x_start='Başlanğıc', x_end='Son', y='Maşın', color='Maşın',
+        hover_data=['Dayanacaq']
+    )
+    fig.update_yaxes(autorange="reversed")
+    fig.update_layout(height=350, showlegend=False)
+    return fig
 
 
-st.title("🚚 Last-Mile Delivery Route Optimizer")
-st.markdown("**Vehicle Routing Problem (VRP)** — Python & Google OR-Tools ilə interaktiv marşrut optimallaşdırması")
+# ============================================
+# BAŞLIQ
+# ============================================
+st.markdown("""
+<div style="padding: 20px 0 10px 0;">
+    <h1 style="margin-bottom: 0;">🚚 RouteOptimizer Pro</h1>
+    <p style="font-size: 16px; color: #555; margin-top: 4px;">
+        Sənaye səviyyəli Vehicle Routing Problem həlli — Google OR-Tools, real yol şəbəkəsi (OSRM) 
+        və çox-meyarlı optimallaşdırma ilə
+    </p>
+</div>
+""", unsafe_allow_html=True)
 
+# ============================================
+# SIDEBAR — PARAMETRLƏR
+# ============================================
 st.sidebar.header("⚙️ Parametrlər")
 
 num_vehicles = st.sidebar.slider(
@@ -247,12 +357,35 @@ balance_priority = st.sidebar.slider(
 st.sidebar.markdown("---")
 st.sidebar.markdown(f"**Ümumi çatdırılma nöqtəsi:** {len(df) - 1}")
 st.sidebar.markdown(f"**Ümumi sifariş həcmi:** {df['demand'].sum()}")
+st.sidebar.markdown("---")
+st.sidebar.subheader("💰 Xərc Parametrləri")
+fuel_price = st.sidebar.number_input("Yanacaq qiyməti (₼/km)", min_value=0.0, value=0.35, step=0.05)
+driver_wage = st.sidebar.number_input("Sürücü saatlıq maaşı (₼/saat)", min_value=0.0, value=8.0, step=0.5)
+avg_speed = st.sidebar.number_input("Orta sürət (km/saat)", min_value=5, value=30, step=5)
 
-with st.spinner("Marşrutlar hesablanır (Guided Local Search optimallaşdırması, ~10 saniyə)..."):
-    routes_info = solve_vrp(num_vehicles, df['demand'].tolist(), distance_matrix, balance_weight=balance_priority)
+progress_placeholder = st.empty()
+progress_bar = progress_placeholder.progress(0, text="Başlanğıc marşrut qurulur...")
+progress_bar.progress(30, text="Capacity məhdudiyyətləri tətbiq olunur...")
+progress_bar.progress(55, text="Guided Local Search ilə optimallaşdırılır (bu addım ən çox vaxt aparır)...")
+
+routes_info = solve_vrp(
+    num_vehicles,
+    tuple(df['demand'].tolist()),
+    tuple(map(tuple, distance_matrix.tolist())),
+    balance_weight=balance_priority
+)
+
+progress_bar.progress(100, text="Tamamlandı.")
+progress_placeholder.empty()
+
+used_vehicles_count = sum(1 for r in routes_info if r['stops'] > 0)
 
 st.sidebar.markdown("---")
 st.sidebar.subheader("🚛 Görünən Maşınlar")
+st.sidebar.caption(
+    f"Solver {used_vehicles_count}/{num_vehicles} maşını faktiki istifadə edir "
+    "(ümumi məsafəni minimuma endirmək üçün boş maşın saxlanmır)."
+)
 
 active_vehicles = []
 for info in routes_info:
@@ -265,16 +398,44 @@ for info in routes_info:
     if checked:
         active_vehicles.append(vid)
 
+# ============================================
+# KPI KARTLARI
+# ============================================
 total_distance = sum(r['distance'] for r in routes_info if r['vehicle_id'] in active_vehicles)
 total_load = sum(r['load'] for r in routes_info if r['vehicle_id'] in active_vehicles)
 active_count = len(active_vehicles)
 
-col1, col2, col3, col4 = st.columns(4)
-col1.metric("Aktiv Maşınlar", f"{active_count}")
-col2.metric("Ümumi Məsafə", f"{total_distance/1000:.2f} km")
-col3.metric("Ümumi Yük", f"{total_load} vahid")
-col4.metric("Orta Məsafə/Maşın", f"{(total_distance/1000/active_count if active_count > 0 else 0):.2f} km")
+active_loads = [r['load'] for r in routes_info if r['vehicle_id'] in active_vehicles and r['stops'] > 0]
+load_balance_score = float(np.std(active_loads)) if len(active_loads) > 1 else 0.0
 
+total_distance_km = total_distance / 1000
+estimated_hours = total_distance_km / avg_speed if avg_speed > 0 else 0
+fuel_cost = total_distance_km * fuel_price
+labor_cost = estimated_hours * driver_wage
+total_operational_cost = fuel_cost + labor_cost
+
+col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
+col1.metric("Aktiv Maşınlar", f"{active_count}")
+col2.metric("Ümumi Məsafə", f"{total_distance_km:.2f} km")
+col3.metric("Ümumi Yük", f"{total_load} vahid")
+col4.metric("Orta Məsafə/Maşın", f"{(total_distance_km/active_count if active_count > 0 else 0):.2f} km")
+col5.metric(
+    "Yük Balans Göstəricisi (std)", f"{load_balance_score:.1f}",
+    help="İstifadə olunan maşınların yükü arasındakı standart sapma. Aşağı dəyər = daha bərabər bölgü."
+)
+col6.metric(
+    "Təxmini Əməliyyat Xərci", f"{total_operational_cost:.2f} ₼",
+    help=f"Yanacaq: {fuel_cost:.2f} ₼ + Əməkhaqqı: {labor_cost:.2f} ₼ (təxmini {estimated_hours:.1f} saat)"
+)
+estimated_co2_kg = total_distance_km * 0.8
+col7.metric(
+    "Təxmini CO2 Emissiyası", f"{estimated_co2_kg:.1f} kg",
+    help="Orta hesabla 0.8 kg CO2/km əmsalı ilə hesablanıb (yüngül yük maşını üçün təxmini dəyər)."
+)
+
+# ============================================
+# XƏRİTƏ
+# ============================================
 st.subheader("🗺️ Marşrut Xəritəsi")
 
 map_type = st.radio(
@@ -282,7 +443,15 @@ map_type = st.radio(
     ["Statik (nömrələnmiş dayanacaqlar)", "Animasiyalı (canlı hərəkət)"],
     horizontal=True
 )
+try:
+    import requests as _req_check
+    _test_response = _req_check.get("http://router.project-osrm.org/route/v1/driving/49.85,40.40;49.86,40.41", timeout=4)
+    osrm_available = _test_response.status_code == 200
+except Exception:
+    osrm_available = False
 
+if not osrm_available:
+    st.warning("⚠️ OSRM serverinə əlaqə qurulmadı — marşrutlar düz xətt (approximation) ilə göstəriləcək.")
 with st.spinner("Real yol marşrutları yüklənir (OSRM)..."):
     if map_type == "Statik (nömrələnmiş dayanacaqlar)":
         m = create_static_map(df, routes_info, active_vehicles)
@@ -290,20 +459,62 @@ with st.spinner("Real yol marşrutları yüklənir (OSRM)..."):
         m = create_animated_map(df, routes_info, active_vehicles)
 
 st_folium(m, width=1400, height=550)
+st.subheader("⏱️ Çatdırılma Vaxt Qrafiki")
+st.caption(f"Bütün marşrutlar saat 08:00-da başlayır, {avg_speed} km/saat orta sürətlə hesablanıb (təxmini).")
+gantt_fig = create_gantt_chart(routes_info, active_vehicles, avg_speed)
+if gantt_fig:
+    st.plotly_chart(gantt_fig, use_container_width=True)
+else:
+    st.caption("Göstəriləcək aktiv marşrut yoxdur.")
 
+# ============================================
+# MARŞRUT DETALLARI (sağlamlıq göstəricisi ilə)
+# ============================================
 st.subheader("📋 Marşrut Detalları")
+
+vehicle_capacity_estimate = calculate_vehicle_capacity(int(df['demand'].sum()), num_vehicles)
+
 table_data = []
 for info in routes_info:
+    fill_ratio = info['load'] / vehicle_capacity_estimate if vehicle_capacity_estimate > 0 else 0
+
+    if info['stops'] == 0:
+        health = "⚪ İstifadə olunmur"
+    elif fill_ratio >= 0.9:
+        health = "🔴 Həddə yaxın"
+    elif fill_ratio <= 0.3:
+        health = "🟡 Az yüklü"
+    else:
+        health = "🟢 Normal"
+
     table_data.append({
         'Maşın': info['vehicle_id'],
         'Dayanacaq Sayı': info['stops'],
         'Məsafə (km)': round(info['distance']/1000, 2),
         'Yük': info['load'],
+        'Doluluq (%)': round(fill_ratio * 100, 1),
+        'Sağlamlıq': health,
         'Aktiv': '✅' if info['vehicle_id'] in active_vehicles else '❌'
     })
 
 results_df = pd.DataFrame(table_data)
-st.dataframe(results_df, use_container_width=True)
+st.dataframe(results_df, width='stretch')
+st.caption(
+    "Doluluq faizi, hər maşının təxmini tutumuna (ümumi tələb / maşın sayı + buffer) nisbətdə hesablanır. "
+    "🔴 90%+ = həddə yaxın, 🟡 ≤30% = az yüklü, 🟢 aralıqda = normal, ⚪ = maşın istifadə olunmayıb."
+)
+with st.expander("🔍 Bu marşrutlar niyə belə seçildi?"):
+    for info in routes_info:
+        if info['stops'] == 0:
+            continue
+        fill_pct = (info['load'] / vehicle_capacity_estimate * 100) if vehicle_capacity_estimate > 0 else 0
+        st.markdown(
+            f"**Maşın {info['vehicle_id']}** — {info['stops']} dayanacaq, "
+            f"{info['distance']/1000:.2f} km. Kapasitet doluluğu {fill_pct:.0f}% olduğu üçün "
+            f"{'əlavə sifariş qəbul edə bilər' if fill_pct < 70 else 'kapasitetə yaxındır, yeni sifariş üçün uyğun deyil'}. "
+            f"Marşrut, Guided Local Search alqoritmi ilə coğrafi yaxınlıq və yük məhdudiyyəti "
+            f"əsasında optimallaşdırılıb."
+        )
 
 csv = results_df.to_csv(index=False).encode('utf-8')
 st.download_button(
@@ -313,6 +524,55 @@ st.download_button(
     mime='text/csv'
 )
 
+# ============================================
+# KONFİQURASİYA TARİXÇƏSİ
+# ============================================
+st.markdown("---")
+st.subheader("🗂️ Konfiqurasiya Tarixçəsi")
+st.markdown(
+    "Sınadığın parametr kombinasiyalarını bura saxlayıb, nəticələri yan-yana müqayisə edə bilərsən."
+)
+
+if 'config_history' not in st.session_state:
+    st.session_state.config_history = []
+
+col_save, col_clear = st.columns([1, 1])
+
+with col_save:
+    if st.button("💾 Cari Nəticəni Tarixçəyə Əlavə Et"):
+        st.session_state.config_history.append({
+            'Maşın Sayı': num_vehicles,
+            'Balans Prioriteti': balance_priority,
+            'Ümumi Məsafə (km)': round(total_distance / 1000, 2),
+            'Yük Balans (std)': round(load_balance_score, 1),
+            'Faktiki İstifadə Olunan Maşın': used_vehicles_count
+        })
+
+with col_clear:
+    if st.button("🗑️ Tarixçəni Təmizlə"):
+        st.session_state.config_history = []
+
+if st.session_state.config_history:
+    history_df = pd.DataFrame(st.session_state.config_history)
+
+    if len(history_df) >= 2:
+        min_idx = history_df['Ümumi Məsafə (km)'].idxmin()
+
+        def highlight_best(row):
+            if row.name == min_idx:
+                return ['background-color: #d4f4dd'] * len(row)
+            return [''] * len(row)
+
+        st.caption("Ən aşağı məsafəli sətir yaşıl arxa fonla vurğulanır.")
+        st.dataframe(history_df.style.apply(highlight_best, axis=1), width='stretch')
+    else:
+        st.dataframe(history_df, width='stretch')
+else:
+    st.caption("Hələ heç bir konfiqurasiya saxlanmayıb.")
+
+# ============================================
+# DİNAMİK YENİDƏN-OPTİMALLAŞDIRMA
+# ============================================
 st.markdown("---")
 st.subheader("🔄 Dinamik Yenidən-Optimallaşdırma (Real-Time Simulyasiya)")
 st.markdown(
@@ -346,14 +606,6 @@ if st.button("🆕 Yeni Sifariş Simulyasiya Et"):
                 prev_lat, prev_lon = df.loc[prev_point, 'latitude'], df.loc[prev_point, 'longitude']
                 next_lat, next_lon = df.loc[next_point, 'latitude'], df.loc[next_point, 'longitude']
 
-                def haversine(lat1, lon1, lat2, lon2):
-                    R = 6371000
-                    phi1, phi2 = np.radians(lat1), np.radians(lat2)
-                    dphi = np.radians(lat2 - lat1)
-                    dlambda = np.radians(lon2 - lon1)
-                    a = np.sin(dphi/2)**2 + np.cos(phi1)*np.cos(phi2)*np.sin(dlambda/2)**2
-                    return R * 2 * np.arctan2(np.sqrt(a), np.sqrt(1-a))
-
                 old_segment = haversine(prev_lat, prev_lon, next_lat, next_lon)
                 new_segment_1 = haversine(prev_lat, prev_lon, new_lat, new_lon)
                 new_segment_2 = haversine(new_lat, new_lon, next_lat, next_lon)
@@ -375,24 +627,31 @@ if st.button("🆕 Yeni Sifariş Simulyasiya Et"):
                 f"✅ Yeni sifariş **Maşın {best_vehicle}**-in marşrutuna, "
                 f"{best_position}-ci mövqeyə əlavə edildi. "
                 f"Bu, bütün sistemi yenidən hesablamaq əvəzinə, yalnız **{best_extra_cost/1000:.2f} km** "
-                f"əlavə məsafə ilə həll edildi — tam yenidən optimallaşdırmaya nisbətən çox daha sürətli yanaşma."
+                f"əlavə məsafə ilə həll edildi."
             )
         else:
             st.warning("Uyğun maşın tapılmadı — bütün maşınlar seçilməyib və ya kapasitet dolu ola bilər.")
 
+# ============================================
+# SENSİTİVİTY ANALİZ
+# ============================================
 st.markdown("---")
 st.subheader("📊 Sensitivity Analiz: Maşın Sayının Təsiri")
-st.markdown("Bu bölmə, nəqliyyat vasitəsi sayının ümumi məsafəyə təsirini göstərir — filo ölçüsü qərarları üçün analitik dəstək.")
+st.markdown(
+    f"Bu bölmə, cari Yük Balansı Prioriteti dəyəri ilə ({balance_priority}), "
+    "nəqliyyat vasitəsi sayının ümumi məsafəyə təsirini göstərir."
+)
 
 run_sensitivity = st.button("Sensitivity Analizini İşə Sal (2-10 maşın)")
 
 if run_sensitivity:
     with st.spinner("Fərqli ssenarilər hesablanır, hər biri GLS ilə optimallaşdırılır..."):
         sensitivity_results = []
-        demands_list = df['demand'].tolist()
+        demands_tuple = tuple(df['demand'].tolist())
+        dist_tuple = tuple(map(tuple, distance_matrix.tolist()))
 
         for v in range(2, 11):
-            result = solve_vrp(v, demands_list, distance_matrix)
+            result = solve_vrp(v, demands_tuple, dist_tuple, balance_weight=balance_priority)
             total_dist = sum(r['distance'] for r in result)
             sensitivity_results.append({
                 'Maşın Sayı': v,
@@ -411,15 +670,14 @@ if run_sensitivity:
             st.line_chart(sens_df.set_index('Maşın Sayı')['Ümumi Məsafə (km)'])
 
         with col_table:
-            st.dataframe(sens_df, use_container_width=True, hide_index=True)
+            st.dataframe(sens_df, width='stretch', hide_index=True)
 
         optimal_candidates = sens_df[sens_df['Marginal Qənaət (%)'] < 5]
         if not optimal_candidates.empty:
             optimal_row = optimal_candidates.iloc[0]
             st.info(
                 f"💡 **Analitik Tövsiyə:** {int(optimal_row['Maşın Sayı'])} maşından sonra, "
-                f"əlavə hər maşın ümumi məsafəyə 5%-dən az təsir edir (diminishing returns). "
-                f"Bu, filo ölçüsü qərarları üçün maya dəyəri/fayda balansını göstərir."
+                f"əlavə hər maşın ümumi məsafəyə 5%-dən az təsir edir (diminishing returns)."
             )
 
 st.markdown("---")
