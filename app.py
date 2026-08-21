@@ -26,44 +26,96 @@ html, body, [class*="css"] {
     font-family: 'Inter', sans-serif;
 }
 
+/* ============ ƏSAS SAHƏ FONU ============ */
+.stApp {
+    background-color: #0f1520;
+}
+
+/* ============ SIDEBAR ============ */
 [data-testid="stSidebar"] {
     background-color: #1a2332;
+    border-right: 1px solid #2a3548;
 }
 
 [data-testid="stSidebar"] * {
     color: #e8ecf1 !important;
 }
 
-[data-testid="stMetric"] {
-    background-color: #f8f9fb;
-    border-left: 4px solid #2563eb;
-    border-radius: 6px;
-    padding: 12px 16px;
+[data-testid="stSidebar"] hr {
+    border-color: #2a3548 !important;
 }
 
-[data-testid="stMetricLabel"] {
-    font-weight: 600;
+/* ============ KPI KARTLARI ============ */
+[data-testid="stMetric"] {
+    background-color: #1a2332;
+    border: 1px solid #2a3548;
+    border-left: 4px solid #2563eb;
+    border-radius: 8px;
+    padding: 16px 18px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
 }
 
 [data-testid="stMetricLabel"] p {
-    color: #1a2332 !important;
+    color: #9aa5b8 !important;
+    font-weight: 600;
+    font-size: 13px;
 }
 
 [data-testid="stMetricValue"] {
-    color: #1a2332 !important;
+    color: #ffffff !important;
     font-weight: 700 !important;
 }
 
 [data-testid="stMetricDelta"] {
-    color: #1a2332 !important;
+    color: #e8ecf1 !important;
 }
+
+/* ============ BAŞLIQLAR ============ */
 h1 {
-    color: #1a2332;
+    color: #ffffff;
     font-weight: 700;
 }
 
 h2, h3 {
-    color: #2563eb;
+    color: #4d8dff;
+    margin-top: 8px;
+}
+
+/* ============ ƏSAS MƏTN ============ */
+.stMarkdown p, .stCaption, [data-testid="stCaptionContainer"] {
+    color: #c5cdd9 !important;
+}
+
+/* ============ BÖLMƏLƏR ARASI NƏFƏS ============ */
+.section-spacer {
+    margin-top: 36px;
+    margin-bottom: 12px;
+}
+
+/* ============ CƏDVƏLLƏR VƏ EXPANDER ============ */
+[data-testid="stExpander"] {
+    background-color: #1a2332;
+    border: 1px solid #2a3548;
+    border-radius: 8px;
+}
+
+[data-testid="stDataFrame"] {
+    border: 1px solid #2a3548;
+    border-radius: 6px;
+}
+
+/* ============ DÜYMƏLƏR ============ */
+.stButton button {
+    background-color: #2563eb;
+    color: white;
+    border-radius: 6px;
+    border: none;
+    font-weight: 600;
+}
+
+.stButton button:hover {
+    background-color: #1d4ed8;
+    color: white;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -303,6 +355,24 @@ except FileNotFoundError:
 # SIDEBAR — PARAMETRLƏR
 # ============================================
 st.sidebar.image("assets/truck_bg.jpg", use_container_width=True)
+with st.expander("🎯 Bu tətbiq necə işləyir? (Buraya klikləyin)", expanded=False):
+    st.markdown("""
+    Bu tətbiq, çatdırılma marşrutlarını avtomatik optimallaşdırır. 3 addımda istifadə edilir:
+
+    **1. Parametrləri seç (sol paneldə)**
+    Neçə maşın istifadə etmək istədiyini, yükün maşınlar arasında nə qədər bərabər bölünməsini
+    (Yük Balansı) və yanacaq/əməkhaqqı dəyərlərini təyin et.
+
+    **2. Nəticələrə bax**
+    Yuxarıdakı kartlarda ümumi məsafə, xərc və CO2 emissiyasını görəcəksən. Aşağıda xəritədə
+    hər maşının marşrutu fərqli rənglə göstərilir — "Statik" görünüş dayanacaqları nömrələyir,
+    "Animasiyalı" görünüş maşınların hərəkətini canlandırır.
+
+    **3. Ssenariləri müqayisə et**
+    Fərqli parametr kombinasiyaları sınayıb "Konfiqurasiya Tarixçəsi" bölməsinə saxlaya bilərsən —
+    bu, hansı seçimin daha sərfəli olduğunu yan-yana görməyə imkan verir. "Ən Optimal Konfiqurasiyanı
+    Tap" düyməsi isə bunu sənin əvəzinə avtomatik axtarır.
+    """)
 st.sidebar.header("⚙️ Parametrlər")
 
 num_vehicles = st.sidebar.slider(
@@ -395,10 +465,13 @@ col7.metric(
     help="Orta hesabla 0.8 kg CO2/km əmsalı ilə hesablanıb (yüngül yük maşını üçün təxmini dəyər)."
 )
 
+st.markdown('<div class="section-spacer"></div>', unsafe_allow_html=True)
+
 # ============================================
 # XƏRİTƏ
 # ============================================
 st.subheader("🗺️ Marşrut Xəritəsi")
+st.caption("Hər rəng bir nəqliyyat vasitəsinin marşrutunu göstərir. Sol paneldəki checkbox-larla maşınları tək-tək aç/bağla edə bilərsən.")
 
 map_type = st.radio(
     "Xəritə növü:",
@@ -421,6 +494,9 @@ with st.spinner("Real yol marşrutları yüklənir (OSRM)..."):
         m = create_animated_map(df, routes_info, active_vehicles)
 
 st_folium(m, width=1400, height=550)
+
+st.markdown('<div class="section-spacer"></div>', unsafe_allow_html=True)
+
 st.subheader("⏱️ Çatdırılma Vaxt Qrafiki")
 st.caption(f"Bütün marşrutlar saat 08:00-da başlayır, {avg_speed} km/saat orta sürətlə hesablanıb (təxmini).")
 gantt_fig = create_gantt_chart(routes_info, active_vehicles, avg_speed)
@@ -428,6 +504,8 @@ if gantt_fig:
     st.plotly_chart(gantt_fig, use_container_width=True)
 else:
     st.caption("Göstəriləcək aktiv marşrut yoxdur.")
+
+st.markdown('<div class="section-spacer"></div>', unsafe_allow_html=True)
 
 # ============================================
 # MARŞRUT DETALLARI (sağlamlıq göstəricisi ilə)
@@ -485,14 +563,30 @@ st.download_button(
     file_name='vrp_results.csv',
     mime='text/csv'
 )
+with st.expander("📋 Nəticə xülasəsini mətn kimi kopyala (LinkedIn/CV üçün)"):
+    summary_text = f"""Last-Mile Delivery Route Optimization — Nəticə Xülasəsi
+
+Konfiqurasiya: {num_vehicles} nəqliyyat vasitəsi, {balance_priority}% yük balansı prioriteti
+Ümumi məsafə: {total_distance_km:.2f} km
+Ümumi yük: {total_load} vahid ({used_vehicles_count}/{num_vehicles} maşın istifadə olunub)
+Yük balans göstəricisi (std): {load_balance_score:.1f}
+Təxmini əməliyyat xərci: {total_operational_cost:.2f} ₼ (yanacaq + əməkhaqqı)
+Təxmini CO2 emissiyası: {estimated_co2_kg:.1f} kg
+
+Metodologiya: Google OR-Tools, Guided Local Search metaheuristikası,
+real yol şəbəkəsi (OSRM) inteqrasiyası ilə hesablanıb.
+"""
+    st.code(summary_text, language=None)
 
 # ============================================
 # KONFİQURASİYA TARİXÇƏSİ
 # ============================================
 st.markdown("---")
 st.subheader("🗂️ Konfiqurasiya Tarixçəsi")
-st.markdown(
-    "Sınadığın parametr kombinasiyalarını bura saxlayıb, nəticələri yan-yana müqayisə edə bilərsən."
+st.caption(
+    "Fərqli parametrləri sına (məsələn maşın sayını dəyişdir), sonra 'Tarixçəyə Əlavə Et' düyməsinə bas. "
+    "Bir neçə ssenari saxladıqdan sonra, ən sərfəlisi avtomatik yaşıl rənglə vurğulanacaq."
+)
 )
 
 if 'config_history' not in st.session_state:
@@ -536,6 +630,47 @@ else:
 # DİNAMİK YENİDƏN-OPTİMALLAŞDIRMA
 # ============================================
 st.markdown("---")
+st.subheader("🎯 Ən Optimal Konfiqurasiyanı Tap")
+st.caption(
+    "Bu, maşın sayı (2-10) və yük balansı prioritetini (0/25/50/75/100) bütün kombinasiyalarda "
+    "avtomatik sınayır və ümumi əməliyyat xərcinə (yanacaq + əməkhaqqı) görə ən sərfəlisini tapır."
+)
+
+if st.button("🔍 Avtomatik Optimal Axtarış Başlat"):
+    with st.spinner("Bütün kombinasiyalar sınanır, bu 1-2 dəqiqə çəkə bilər..."):
+        demands_tuple = tuple(df['demand'].tolist())
+        dist_tuple = tuple(map(tuple, distance_matrix.tolist()))
+
+        grid_results = []
+        for v in range(2, 11):
+            for bw in [0, 25, 50, 75, 100]:
+                res = solve_vrp_cached(v, demands_tuple, dist_tuple, balance_weight=bw)
+                dist_km = sum(r['distance'] for r in res) / 1000
+                hours = dist_km / avg_speed if avg_speed > 0 else 0
+                cost = (dist_km * fuel_price) + (hours * driver_wage)
+
+                grid_results.append({
+                    'Maşın Sayı': v,
+                    'Balans Prioriteti': bw,
+                    'Məsafə (km)': round(dist_km, 2),
+                    'Təxmini Xərc (₼)': round(cost, 2)
+                })
+
+        grid_df = pd.DataFrame(grid_results)
+        best_row = grid_df.loc[grid_df['Təxmini Xərc (₼)'].idxmin()]
+
+        st.success(
+            f"✅ Ən sərfəli kombinasiya: **{int(best_row['Maşın Sayı'])} maşın**, "
+            f"**{int(best_row['Balans Prioriteti'])}% balans prioriteti** — "
+            f"təxmini xərc **{best_row['Təxmini Xərc (₼)']:.2f} ₼** "
+            f"({best_row['Məsafə (km)']:.2f} km)."
+        )
+
+        with st.expander("Bütün sınanmış kombinasiyalara bax"):
+            st.dataframe(
+                grid_df.sort_values('Təxmini Xərc (₼)').reset_index(drop=True),
+                width='stretch'
+            )
 st.subheader("🔄 Dinamik Yenidən-Optimallaşdırma (Real-Time Simulyasiya)")
 st.markdown(
     "Bu bölmə, canlı bir sifarişin sistemə necə inteqrasiya olunduğunu simulyasiya edir — "
