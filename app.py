@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
 import plotly.express as px
-from vrp_core import haversine, calculate_vehicle_capacity, solve_vrp
+from vrp_core import haversine, calculate_vehicle_capacity, solve_vrp, haversine_distance_matrix, validate_uploaded_data
 
 st.set_page_config(
     page_title="Last-Mile Delivery VRP Optimizer",
@@ -122,13 +122,67 @@ h2, h3 {
 
 
 @st.cache_data
-def load_data():
+def load_sample_data():
     df = pd.read_csv('data/delivery_points.csv')
     distance_matrix = np.load('data/distance_matrix.npy')
     return df, distance_matrix
 
 
-df, distance_matrix = load_data()
+@st.cache_data
+def compute_distance_matrix_for_upload(df_json):
+    from io import StringIO
+    df_uploaded = pd.read_json(StringIO(df_json))
+    return haversine_distance_matrix(df_uploaded)
+
+
+st.sidebar.header("📂 Data Mənbəyi")
+data_source = st.sidebar.radio(
+    "Hansı data ilə işləmək istəyirsən?",
+    ["Nümunə data (80 nöqtə, Bakı)", "Öz CSV faylımı yüklə"],
+    help="Öz CSV faylın latitude, longitude və demand sütunlarını ehtiva etməlidir. "
+         "İlk sətir depo (anbar) kimi qəbul olunur."
+)
+sample_csv = pd.DataFrame({
+    'latitude': [40.3870, 40.3950, 40.3850, 40.4080],
+    'longitude': [49.8420, 49.8300, 49.8450, 49.8650],
+    'demand': [0, 5, 3, 7]
+})
+st.sidebar.download_button(
+    "📄 Nümunə CSV formatını endir",
+    data=sample_csv.to_csv(index=False).encode('utf-8'),
+    file_name="nümunə_format.csv",
+    mime="text/csv",
+    help="Öz datanı bu formata uyğunlaşdırıb yüklə."
+)
+
+if data_source == "Öz CSV faylımı yüklə":
+    uploaded_file = st.sidebar.file_uploader(
+        "CSV faylını seç",
+        type="csv",
+        help="Sütunlar: latitude, longitude, demand. İlk sətir = depo (demand avtomatik 0 edilir)."
+    )
+
+    if uploaded_file is not None:
+        raw_df = pd.read_csv(uploaded_file)
+        error_msg, clean_df = validate_uploaded_data(raw_df)
+
+        if error_msg:
+            st.sidebar.error(f"❌ {error_msg}")
+            st.error(
+                "Yüklənən fayl formatı düzgün deyil. Sol paneldəki xəta mesajına bax və "
+                "faylı düzəldib yenidən yüklə. Bu ara nümunə data ilə davam edilir."
+            )
+            df, distance_matrix = load_sample_data()
+        else:
+            st.sidebar.success(f"✅ {len(clean_df)} nöqtə uğurla yükləndi.")
+            df = clean_df
+            with st.spinner("Yeni data üçün məsafə matrisi hesablanır..."):
+                distance_matrix = compute_distance_matrix_for_upload(df.to_json())
+    else:
+        st.sidebar.info("Fayl seçilməyib — nümunə data istifadə olunur.")
+        df, distance_matrix = load_sample_data()
+else:
+    df, distance_matrix = load_sample_data()
 
 COLORS = ['#4E79A7', '#F28E2B', '#E15759', '#76B7B2', '#59A14F',
           '#EDC948', '#B07AA1', '#FF9DA7', '#9C755F', '#BAB0AC']
@@ -587,7 +641,7 @@ st.caption(
     "Fərqli parametrləri sına (məsələn maşın sayını dəyişdir), sonra 'Tarixçəyə Əlavə Et' düyməsinə bas. "
     "Bir neçə ssenari saxladıqdan sonra, ən sərfəlisi avtomatik yaşıl rənglə vurğulanacaq."
 )
-)
+
 
 if 'config_history' not in st.session_state:
     st.session_state.config_history = []
@@ -728,6 +782,8 @@ if st.button("🆕 Yeni Sifariş Simulyasiya Et"):
             )
         else:
             st.warning("Uyğun maşın tapılmadı — bütün maşınlar seçilməyib və ya kapasitet dolu ola bilər.")
+
+st.markdown('<div class="section-spacer"></div>', unsafe_allow_html=True)
 
 # ============================================
 # SENSİTİVİTY ANALİZ

@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
 
@@ -84,3 +85,61 @@ def solve_vrp(num_vehicles, demands, dist_matrix, depot=0, balance_weight=0):
             })
 
     return routes_info
+def haversine_distance_matrix(df):
+    """
+    Verilmiş DataFrame-dəki (latitude, longitude) sütunlarına əsasən,
+    bütün nöqtə cütləri arasında Haversine məsafə matrisini (metrlə) hesablayır.
+    """
+    n = len(df)
+    matrix = np.zeros((n, n))
+
+    lats = df['latitude'].values
+    lons = df['longitude'].values
+
+    for i in range(n):
+        for j in range(n):
+            if i != j:
+                matrix[i][j] = haversine(lats[i], lons[i], lats[j], lons[j])
+
+    return matrix.astype(int)
+
+
+def validate_uploaded_data(df):
+    """
+    İstifadəçinin yüklədiyi CSV-ni yoxlayır. Uğurlu olarsa (None, təmizlənmiş_df) qaytarır,
+    xəta olarsa (xəta_mətni, None) qaytarır.
+    """
+    required_columns = {'latitude', 'longitude', 'demand'}
+    actual_columns = set(df.columns.str.lower().str.strip())
+
+    if not required_columns.issubset(actual_columns):
+        missing = required_columns - actual_columns
+        return f"CSV faylında bu sütunlar çatışmır: {', '.join(missing)}. Tələb olunan sütunlar: latitude, longitude, demand.", None
+
+    df.columns = df.columns.str.lower().str.strip()
+    df = df[['latitude', 'longitude', 'demand']].copy()
+
+    if len(df) < 3:
+        return "Ən azı 3 sətir (1 depo + minimum 2 çatdırılma nöqtəsi) tələb olunur.", None
+
+    if len(df) > 300:
+        return "Maksimum 300 nöqtə dəstəklənir (böyük data üçün hesablama vaxtı həddindən artıq uzun olar).", None
+
+    try:
+        df['latitude'] = pd.to_numeric(df['latitude'])
+        df['longitude'] = pd.to_numeric(df['longitude'])
+        df['demand'] = pd.to_numeric(df['demand']).astype(int)
+    except (ValueError, TypeError):
+        return "latitude, longitude və demand sütunları rəqəm formatında olmalıdır.", None
+
+    if df['latitude'].isnull().any() or df['longitude'].isnull().any():
+        return "Bəzi sətirlərdə latitude/longitude dəyəri boşdur.", None
+
+    if not ((df['latitude'].between(-90, 90)).all() and (df['longitude'].between(-180, 180)).all()):
+        return "latitude dəyəri -90/90, longitude dəyəri -180/180 aralığında olmalıdır.", None
+
+    df.loc[0, 'demand'] = 0
+    df.reset_index(drop=True, inplace=True)
+    df.insert(0, 'point_id', range(len(df)))
+
+    return None, df
